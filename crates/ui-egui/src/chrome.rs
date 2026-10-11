@@ -236,7 +236,12 @@ pub fn status_bar(app: &mut WordApp, ui: &mut Ui) {
                 if app.session.sel.focus.story != StoryRef::Body && !crate::canvas::in_text_box(app) {
                     st(ui, tl!("Editing header/footer"));
                 }
-                st(ui, tl!("English (United States)"));
+                let (lang, _) = crate::ribbon::caret_language(app);
+                let lang_resp = st(ui, &crate::ribbon::language_label(&lang));
+                egui::Popup::menu(&lang_resp).show(|ui| {
+                    ui.set_min_width(200.0);
+                    crate::ribbon::language_menu_items(ui, app);
+                });
                 if app.session.doc.settings.track_changes {
                     st(ui, tl!("Track Changes: On"));
                 }

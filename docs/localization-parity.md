@@ -1,6 +1,6 @@
 # Localization parity with Microsoft Word
 
-> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-10 · **Change:** major (first version; catalogs measured from `crates/ui-egui/src/i18n`, Word's languages from its bundle listing) · **Target:** Microsoft Word (Microsoft 365) for Mac 16.113.4
+> **Last reviewed:** 2026-10-11 · **Last updated:** 2026-10-11 · **Change:** minor (Hungarian interface catalog and Hungarian spelling; previously major: first version, catalogs measured from `crates/ui-egui/src/i18n`, Word's languages from its bundle listing) · **Target:** Microsoft Word (Microsoft 365) for Mac 16.113.4
 
 Interface languages, script support and proofing per language. How translation works (catalog
 format, adding a language, clean-room rule): `crates/ui-egui/src/i18n/mod.rs`.
@@ -18,8 +18,8 @@ other ~18 languages Word ships, plus native-speaker review (human).
 
 ## What WordCraft ships (measured)
 
-- **10 interface languages**: English plus `zh-hans`, `zh-hant`, `ja`, `uk`, `es`, `pt-br`,
-  Serbian `sr`/`sr-latn` (#250), and Estonian `et` (1,161 entries). Catalogs have ~1,100–1,160 entries
+- **11 interface languages**: English plus `zh-hans`, `zh-hant`, `ja`, `uk`, `es`, `pt-br`,
+  Serbian `sr`/`sr-latn` (#250), Estonian `et` (1,161 entries) and Hungarian `hu` (1,309 entries). Catalogs have ~1,100–1,160 entries
   each. A test (`every_tab_and_command_is_translated`) enforces that every ribbon tab, command
   label and ribbon location is translated in every language.
 - Of the 675 English strings a scan extracts from `tl!(…)` calls and command labels/locations, each
@@ -27,7 +27,12 @@ other ~18 languages Word ships, plus native-speaker review (human).
   Read Aloud, Backstage greetings) aren't wrapped in `tl!` yet, so they show in English in every
   language: the true share of visible strings is **~93–95%** (estimated).
 - Pending PRs: German (#203), Norwegian Bokmål (#208) and Nynorsk (#210), Hebrew with RTL (#20).
-- **Proofing: English only** (one dictionary, rule-based grammar, English hyphenation patterns).
+- **Proofing: English and Hungarian.** English: one dictionary, rule-based grammar, English
+  hyphenation patterns. Hungarian: spelling with suggestions from the Magyar Ispell Hunspell
+  dictionary (affixes and compounds, MPL-2.0) through the `spellbook` crate, and the `a`/`az`
+  article rule; each word is checked in its run's language (`w:lang`). Review › Language (and the
+  status bar) sets the language, "do not check" and the document default; with a Hungarian
+  interface, new blank documents are Hungarian. No Hungarian hyphenation or grammar checker yet.
 - Document scripts: shaping via HarfRust (HarfBuzz port) for every script; bidi (UAX #9) and Arabic
   shaping tested (#207); IME on all desktop platforms (winit fixes pending, #155–#164).
 
@@ -52,11 +57,16 @@ shared items below.
 | Korean | ko | 0 | ❌ | Hangul ✅; macOS Korean IME fixes pending (#163, #164) | no | none | 3–5 |
 | Vietnamese | vi | 0 | ❌ | Latin with stacked diacritics, untested | no | none | 3–4 |
 
-Other shipped languages: **5** — Traditional Chinese (`zh-hant`), Ukrainian (`uk`), Serbian
-Cyrillic and Latin (`sr`, `sr-latn`, #250), and Estonian (`et`), all partial.
+Other shipped languages: **6** — Traditional Chinese (`zh-hant`), Ukrainian (`uk`), Serbian
+Cyrillic and Latin (`sr`, `sr-latn`, #250), Estonian (`et`) and Hungarian (`hu`), all partial.
 Estonian uses the existing fonts, follows `et-EE` system locales, and is available in Options or
 through `ui.language` with `{"value":"et"}`. Its 1,161 entries cover the existing interface catalog.
 Estonian spelling, grammar, dates and document templates are not added by the interface catalog.
+Hungarian (`hu`) has every entry of the existing interface catalog (1,309), follows `hu-HU` system
+locales, uses the bundled fonts (ő and ű checked) and is chosen in Options or with
+`ui.language` `{"value":"hu"}`. Counts need no plural forms (a noun after a number is singular).
+Not native-speaker reviewed yet. Hungarian spelling and the `a`/`az` rule are described under
+"What WordCraft ships" above.
 
 ## Shared work (not in the per-language hours)
 
@@ -72,6 +82,8 @@ Estonian spelling, grammar, dates and document templates are not added by the in
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-11 | minor | Hungarian spelling (Magyar Ispell via spellbook), per-run proofing language, Review › Language menu |
+| 2026-10-11 | minor | Hungarian interface catalog (1,309 entries), locale selection, saved preference and font coverage checks |
 | 2026-10-10 | minor | Estonian interface catalog, locale selection, saved preference and font coverage checks |
 | 2026-10-10 | minor | Serbian (Cyrillic and Latin) interface merged (#250) |
 | 2026-10-10 | major | First version: twelve-language table, catalog coverage measured, Word's 30 UI languages and 120 proofing tools listed |

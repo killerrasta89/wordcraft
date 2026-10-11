@@ -23,9 +23,16 @@ list (author, source, license) is in ATTRIBUTION.md.
 - English word list (assets/hyphenation/en-us.dic) — derived from the Moby Hyphenator II list by
   Grady Ward, public domain (Project Gutenberg eBook #3204). The hyphenation patterns
   (assets/hyphenation/en-us.pat) were trained from it and are released as CC0-1.0.
+- Hungarian spelling dictionary (assets/proofing/hu-hu.aff, hu-hu.dic) — Magyar Ispell 1.9 by
+  László Németh and Ferenc Godó, from the LibreOffice dictionaries repository, under the Mozilla
+  Public License 2.0 (assets/proofing/MPL-2.0.txt; the authors also offer LGPL-3.0-or-later). The
+  affix file's flags were re-encoded as UTF-8; see assets/proofing/README-hu-hu.txt. These files
+  are not covered by WordCraft's MIT OR Apache-2.0 licence.
 - All UI icons are drawn in code (crates/ui-egui/src/icons.rs) and are original work, MIT OR Apache-2.0.
 
 Rust dependencies (egui, eframe, vello_cpu, skrifa, harfrust, krilla, quick-xml, zip, image, …)
-are permissively licensed (MIT/Apache-2.0/BSD/ISC/Zlib) and fetched through crates.io.
+are permissively licensed (MIT/Apache-2.0/BSD/ISC/Zlib) and fetched through crates.io, except
+spellbook (the Hungarian spell checker, unmodified), which is under the Mozilla Public License 2.0;
+its source is at https://crates.io/crates/spellbook.
 
 No Microsoft, Adobe, Avid or Autodesk icons, images, templates or artwork are included.

@@ -3,12 +3,15 @@
 //! - **Spelling** against the public-domain Moby word list (~160k words, the same list that
 //!   drives hyphenation), with inflections (`-s`, `-es`, `-ed`, `-ing`, `-ly`, `'s`…), a user
 //!   dictionary and ignore lists; suggestions by edit distance.
-//! - **Grammar** checks that are cheap and reliable: repeated words, `a`/`an`, capital letter
-//!   after a sentence end, spaces before punctuation, doubled spaces.
+//! - **Hungarian spelling** ([`hu`]): the Magyar Ispell dictionary (affixes and compounds) for text
+//!   whose language is Hungarian; see [`ProofLang`] and the `*_with` checks.
+//! - **Grammar** checks that are cheap and reliable: repeated words, `a`/`an` (Hungarian `a`/`az`),
+//!   capital letter after a sentence end, spaces before punctuation, doubled spaces.
 //! - **Hyphenation** ([`hyphen`]): dictionary, Liang patterns, heuristic.
 #![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable)]
 
 pub mod dict;
+pub mod hu;
 pub mod hyphen;
 pub mod patterns;
 
@@ -29,6 +32,24 @@ pub struct Issue {
 pub enum IssueKind {
     Spelling,
     Grammar,
+}
+
+/// The language a stretch of text is proofed in, from its language tag (`w:lang`, BCP 47).
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash)]
+pub enum ProofLang {
+    /// The English word list and rules; also every language without its own dictionary.
+    #[default]
+    English,
+    /// The Hungarian dictionary ([`hu`]) and the `a`/`az` article rule.
+    Hungarian,
+}
+
+impl ProofLang {
+    /// The proofing language for a language tag such as `hu-HU`, `hu` or `en-US`.
+    pub fn from_tag(tag: Option<&str>) -> ProofLang {
+        let primary = tag.and_then(|t| t.split(['-', '_']).next()).unwrap_or("");
+        if primary.eq_ignore_ascii_case("hu") { ProofLang::Hungarian } else { ProofLang::English }
+    }
 }
 
 fn user_words() -> &'static RwLock<HashSet<String>> {
@@ -210,6 +231,37 @@ pub fn is_correct(word: &str) -> bool {
     false
 }
 
+/// Is `word` spelled correctly in `lang`? Numbers, single letters, short ALL-CAPS acronyms and
+/// user-dictionary words are accepted in every language; Hungarian words are accepted unchecked
+/// when the Hungarian dictionary isn't built in.
+pub fn is_correct_in(word: &str, lang: ProofLang) -> bool {
+    match lang {
+        ProofLang::English => is_correct(word),
+        ProofLang::Hungarian => {
+            let w = word.trim_matches(|c: char| !c.is_alphanumeric() && c != '\'' && c != '’').trim_matches(['\'', '’']);
+            let n = w.chars().count();
+            if n <= 1 || w.chars().any(|c| c.is_ascii_digit()) || !w.chars().any(char::is_alphabetic) {
+                return true;
+            }
+            if w.chars().all(|c| !c.is_lowercase()) && n <= 6 {
+                return true;
+            }
+            if user_words().read().unwrap_or_else(|e| e.into_inner()).contains(&w.to_lowercase().replace('’', "'")) {
+                return true;
+            }
+            hu::check(w).unwrap_or(true)
+        }
+    }
+}
+
+/// Spelling suggestions for a misspelled word in `lang` (best first, at most `max`).
+pub fn suggest_in(word: &str, lang: ProofLang, max: usize) -> Vec<String> {
+    match lang {
+        ProofLang::English => suggest(word, max),
+        ProofLang::Hungarian => hu::suggest(word, max),
+    }
+}
+
 /// Spelling suggestions for a misspelled word (best first, at most `max`).
 pub fn suggest(word: &str, max: usize) -> Vec<String> {
     let lower = word.to_lowercase();
@@ -314,8 +366,14 @@ pub fn words(text: &str) -> Vec<(usize, usize)> {
         .collect()
 }
 
-/// Spelling issues in a paragraph of text (no suggestions; ask [`suggest`] on demand).
+/// Spelling issues in a paragraph of English text (no suggestions; ask [`suggest`] on demand).
 pub fn check_spelling(text: &str) -> Vec<Issue> {
+    check_spelling_with(text, &|_| ProofLang::English)
+}
+
+/// Spelling issues in a paragraph whose language may change from word to word: `lang_at` gives
+/// the language at a byte offset (each word is checked in the language at its start).
+pub fn check_spelling_with(text: &str, lang_at: &dyn Fn(usize) -> ProofLang) -> Vec<Issue> {
     let mut v = Vec::new();
     for (a, b) in words(text) {
         let Some(w) = text.get(a..b) else { continue };
@@ -326,20 +384,31 @@ pub fn check_spelling(text: &str) -> Vec<Issue> {
         if token.contains("://") || token.contains('@') || token.starts_with("www.") {
             continue;
         }
-        if !is_correct(w) {
+        if !is_correct_in(w, lang_at(a)) {
             v.push(Issue { start: a, end: b, kind: IssueKind::Spelling, message: "Possible spelling mistake".into(), suggestions: Vec::new() });
         }
     }
     v
 }
 
-/// Grammar issues in a paragraph of text.
+/// Grammar issues in a paragraph of English text.
 pub fn check_grammar(text: &str) -> Vec<Issue> {
+    check_grammar_with(text, &|_| ProofLang::English)
+}
+
+/// Hungarian vowels (the article before them is `az`).
+const HU_VOWELS: &str = "aáeéiíoóöőuúüűAÁEÉIÍOÓÖŐUÚÜŰ";
+
+/// Grammar issues in a paragraph whose language may change from word to word (see
+/// [`check_spelling_with`]). The article rule follows the language: `a`/`an` in English, `a`/`az`
+/// in Hungarian; the other checks are the same in every language.
+pub fn check_grammar_with(text: &str, lang_at: &dyn Fn(usize) -> ProofLang) -> Vec<Issue> {
     let mut v = Vec::new();
     let ws = words(text);
     for pair in ws.windows(2) {
         let [(a0, b0), (a1, b1)] = pair else { continue };
         let (Some(w0), Some(w1), Some(gap)) = (text.get(*a0..*b0), text.get(*a1..*b1), text.get(*b0..*a1)) else { continue };
+        let hungarian = lang_at(*a0) == ProofLang::Hungarian;
         if gap.trim().is_empty()
             && w0.eq_ignore_ascii_case(w1)
             && w0.chars().all(char::is_alphabetic)
@@ -352,6 +421,30 @@ pub fn check_grammar(text: &str) -> Vec<Issue> {
                 message: format!("Repeated word: \"{w1}\""),
                 suggestions: vec![w0.to_string()],
             });
+        }
+        if hungarian {
+            // Acronyms are read by their letter names ("az MTA"), so they are left alone.
+            let acronym = w1.chars().count() > 1 && w1.chars().all(|c| !c.is_lowercase());
+            let first = w1.chars().next().filter(|c| c.is_alphabetic() && !acronym);
+            if gap == " " && (w0 == "a" || w0 == "A") && first.is_some_and(|c| HU_VOWELS.contains(c)) {
+                v.push(Issue {
+                    start: *a0,
+                    end: *b0,
+                    kind: IssueKind::Grammar,
+                    message: "Use \"az\" before a vowel".into(),
+                    suggestions: vec![if w0 == "A" { "Az" } else { "az" }.into()],
+                });
+            }
+            if gap == " " && (w0 == "az" || w0 == "Az") && first.is_some_and(|c| !HU_VOWELS.contains(c)) {
+                v.push(Issue {
+                    start: *a0,
+                    end: *b0,
+                    kind: IssueKind::Grammar,
+                    message: "Use \"a\" before a consonant".into(),
+                    suggestions: vec![if w0 == "Az" { "A" } else { "a" }.into()],
+                });
+            }
+            continue;
         }
         if gap == " " && (w0 == "a" || w0 == "A") && w1.chars().next().is_some_and(|c| "aeiouAEIOU".contains(c)) && !starts_consonant_sound(w1) {
             v.push(Issue {
@@ -483,6 +576,57 @@ mod tests {
     }
 
     #[test]
+    fn languages_come_from_tags() {
+        assert_eq!(ProofLang::from_tag(Some("hu-HU")), ProofLang::Hungarian);
+        assert_eq!(ProofLang::from_tag(Some("HU")), ProofLang::Hungarian);
+        assert_eq!(ProofLang::from_tag(Some("hu_HU")), ProofLang::Hungarian);
+        assert_eq!(ProofLang::from_tag(Some("en-US")), ProofLang::English);
+        assert_eq!(ProofLang::from_tag(Some("hur")), ProofLang::English);
+        assert_eq!(ProofLang::from_tag(None), ProofLang::English);
+    }
+
+    #[test]
+    fn hungarian_text_is_checked_in_hungarian() {
+        let t = "Az almáimmal a házakban ülök, de a szoveg hibás.";
+        let hu = |_| ProofLang::Hungarian;
+        let bad: Vec<&str> = check_spelling_with(t, &hu).iter().map(|i| &t[i.start..i.end]).collect();
+        assert_eq!(bad, vec!["szoveg"]);
+        // The same text checked as English flags the Hungarian words.
+        assert!(check_spelling(t).len() > 3);
+        // Mixed: an English run inside Hungarian text keeps English checking.
+        let t = "Ez egy szövegszerkesztő, it has a mispelled word.";
+        let english_from = t.find("it has").unwrap_or(0);
+        let mixed = |off: usize| if off >= english_from { ProofLang::English } else { ProofLang::Hungarian };
+        let bad: Vec<&str> = check_spelling_with(t, &mixed).iter().map(|i| &t[i.start..i.end]).collect();
+        assert_eq!(bad, vec!["mispelled"]);
+        assert!(suggest_in("szoveg", ProofLang::Hungarian, 5).contains(&"szöveg".to_string()));
+        assert!(suggest_in("recieve", ProofLang::English, 5).contains(&"receive".to_string()));
+    }
+
+    #[test]
+    fn hungarian_user_words_and_acronyms_are_accepted() {
+        assert!(!is_correct_in("zxqmagyarszó", ProofLang::Hungarian));
+        add_word("zxqmagyarszó");
+        assert!(is_correct_in("Zxqmagyarszó", ProofLang::Hungarian));
+        for w in ["MTA", "ELTE", "2026-ban", "x", "–"] {
+            assert!(is_correct_in(w, ProofLang::Hungarian), "{w}");
+        }
+    }
+
+    #[test]
+    fn hungarian_articles() {
+        let hu = |_| ProofLang::Hungarian;
+        let msgs = |t: &str| check_grammar_with(t, &hu).into_iter().map(|i| (t[i.start..i.end].to_string(), i.suggestions)).collect::<Vec<_>>();
+        assert_eq!(msgs("Láttam a almát."), vec![("a".to_string(), vec!["az".to_string()])]);
+        assert_eq!(msgs("Az ház szép."), vec![("Az".to_string(), vec!["A".to_string()])]);
+        assert_eq!(msgs("A Öböl és az ős fa."), vec![("A".to_string(), vec!["Az".to_string()])]);
+        assert!(msgs("Az alma és a ház, az MTA és a ELTE.").is_empty(), "{:?}", msgs("Az alma és a ház, az MTA és a ELTE."));
+        // English rules don't apply to Hungarian text, and the other way round.
+        assert!(msgs("Ez egy alma.").is_empty());
+        assert!(check_grammar("Use a apple.").iter().any(|i| i.message.contains("\"an\"")));
+    }
+
+    #[test]
     fn user_dictionary_works() {
         assert!(!is_correct("zxqwordcrafty"));
         add_word("zxqwordcrafty");
@@ -501,6 +645,9 @@ mod tests {
             let _ = check_spelling(&s);
             let _ = check_grammar(&s);
             let _ = suggest(&s, 3);
+            let _ = check_spelling_with(&s, &|_| ProofLang::Hungarian);
+            let _ = check_grammar_with(&s, &|_| ProofLang::Hungarian);
+            let _ = suggest_in(&s, ProofLang::Hungarian, 3);
             let _ = hyphen::hyphen_points(&s, &hyphen::Limits::default());
         }
     }

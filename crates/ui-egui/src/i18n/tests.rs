@@ -412,3 +412,78 @@ fn bundled_interface_fonts_cover_estonian_letters() {
         }
     }
 }
+
+#[test]
+fn hungarian_locales_and_saved_preference_keep_document_content() {
+    let hu = lang("hu");
+    for tag in ["hu", "hu-HU", "HU_hu.UTF-8", "hu-Latn-HU", "hu_HU.UTF-8@euro"] {
+        assert_eq!(lang_from_tag(tag), Some(hu), "{tag}");
+    }
+    assert_eq!(first_supported(["fr-FR", "hu-HU", "en-US"]), Some(hu));
+    assert_eq!(normalize_pref("HU"), Some("hu"));
+    assert_eq!(hu.name(), "Magyar");
+    let mut app = crate::WordApp::new(wordcraft_engine::Session::new(wordcraft_engine::sample::sample_document()), Default::default());
+    let before = serde_json::to_value(&app.session.doc).unwrap();
+    let result = app.run("ui.language", serde_json::json!({"value": "HU"})).unwrap();
+    assert_eq!(result["effective"], "hu");
+    assert_eq!(app.ui.language, "hu");
+    assert_eq!(serde_json::to_value(&app.session.doc).unwrap(), before);
+    let saved = serde_json::to_string(&app.ui).unwrap();
+    let restored: crate::UiState = serde_json::from_str(&saved).unwrap();
+    assert_eq!(Lang::from_pref(&restored.language), hu);
+}
+
+#[test]
+fn hungarian_covers_the_interface_catalog_and_counts_take_the_singular() {
+    use std::collections::HashSet;
+    let keys = |source| parse_entries(source).0.into_iter().map(|e| e.source).collect::<HashSet<_>>();
+    let hu = lang("hu");
+    // Every entry of the shared catalog, plus Hungarian proofing labels the others lack yet.
+    assert!(keys(lang("es").0.source).is_subset(&keys(hu.0.source)));
+    assert!(keys(lang("zh-hans").0.source).is_subset(&keys(hu.0.source)));
+    assert_eq!(tr(hu, "Home"), "Kezdőlap");
+    assert_eq!(tr(hu, "Save"), "Mentés");
+    assert_eq!(tr(hu, "Spelling & Grammar"), "Helyesírás és nyelvhelyesség");
+    assert_eq!(tr(hu, "unknown future label"), "unknown future label");
+    assert_eq!(tr(hu, "Hungarian"), "Magyar");
+    assert_eq!(tr(hu, "Possible spelling mistake"), "Lehetséges helyesírási hiba");
+    assert_eq!(fmt(tr(hu, "Exported {path}"), &[("path", "draft-{words}.docx")]), "Exportálva: draft-{words}.docx");
+    // A noun after a number stays singular in Hungarian: 1 szó, 2 szó, 21 szó.
+    for count in [0, 1, 2, 11, 21, 101] {
+        let words = count.to_string();
+        assert_eq!(fmt(tr(hu, "{words} words"), &[("words", &words)]), format!("{count} szó"));
+        assert_eq!(fmt(tr(hu, "{selected} of {words} words"), &[("selected", "1"), ("words", &words)]), format!("1 / {count} szó"));
+    }
+}
+
+#[test]
+fn bundled_interface_fonts_cover_hungarian_letters() {
+    let db = wordcraft_fonts::FontDb::with_font_dirs(Vec::new());
+    for (family, style) in [("Inter", "Regular"), ("Inter", "Medium"), ("Inter", "SemiBold"), ("JetBrains Mono", "Regular")] {
+        let face = db.face(family, style);
+        assert_eq!(face.family, family, "must use the bundled interface face");
+        for ch in "ÁáÉéÍíÓóÖöŐőÚúÜüŰű„”–".chars() {
+            assert_ne!(face.glyph_for(ch), 0, "{family} {style} lacks {ch}");
+        }
+    }
+}
+
+#[test]
+fn a_hungarian_interface_writes_new_blank_documents_in_hungarian() {
+    let mut app = crate::WordApp::new(wordcraft_engine::Session::new(wordcraft_doc::Document::new()), Default::default());
+    let ctx = egui::Context::default();
+    app.logic(&ctx);
+    assert_eq!(app.session.doc.styles.default_chr.lang.as_deref(), Some("en-US"));
+    app.run("ui.language", serde_json::json!({"value": "hu"})).unwrap();
+    app.logic(&ctx);
+    assert_eq!(app.session.doc.styles.default_chr.lang.as_deref(), Some("hu-HU"));
+    assert_eq!(crate::ribbon::caret_language(&app), ("hu-HU".to_string(), false));
+    assert_eq!(crate::ribbon::language_label("hu-HU"), "Magyar");
+    assert_eq!(crate::ribbon::language_label("en-US"), "Angol (Egyesült Államok)");
+    assert_eq!(crate::ribbon::language_label("de-DE"), "de-DE");
+    // Back to English: documents that already have Hungarian keep it.
+    app.run("ui.language", serde_json::json!({"value": "en"})).unwrap();
+    app.logic(&ctx);
+    assert_eq!(app.session.doc.styles.default_chr.lang.as_deref(), Some("hu-HU"));
+    assert_eq!(crate::ribbon::language_label("hu-HU"), "Hungarian");
+}

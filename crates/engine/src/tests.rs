@@ -2732,3 +2732,52 @@ fn deleting_the_last_cell_column_never_leaves_a_table_without_rows() {
     run(&mut s, "edit.undo", json!({}));
     assert!(s.doc.body.iter().any(|b| b.as_table().is_some_and(|t| !t.rows.is_empty())));
 }
+
+/// Hungarian text is checked with the Hungarian dictionary: inflected and compound words pass,
+/// misspellings get Hungarian suggestions, and English text in the same document stays English.
+#[test]
+fn hungarian_text_is_proofed_in_hungarian() {
+    let mut s = s();
+    run(&mut s, "review.language", json!({"lang": "hu-HU", "default": true}));
+    assert_eq!(s.doc.styles.default_chr.lang.as_deref(), Some("hu-HU"));
+    run(&mut s, "text.insert", json!({"text": "A szövegszerkesztőben az almáimmal ülök, de a szoveg hibás."}));
+    let issues = run(&mut s, "review.issues", json!({}));
+    let words: Vec<&str> = issues.as_array().into_iter().flatten().filter_map(|i| i["text"].as_str()).collect();
+    assert_eq!(words, ["szoveg"], "{issues}");
+    let sugg: Vec<&str> = issues[0]["suggestions"].as_array().into_iter().flatten().filter_map(|v| v.as_str()).collect();
+    assert!(sugg.contains(&"szöveg"), "{sugg:?}");
+    // An English sentence marked English keeps the English checker.
+    run(&mut s, "text.insert", json!({"text": " Thsi is English."}));
+    let end = s.sel.focus.clone();
+    let start = Pos { off: end.off - " Thsi is English.".len(), ..end.clone() };
+    s.sel = crate::Selection { anchor: start, focus: end };
+    run(&mut s, "review.language", json!({"lang": "en-US"}));
+    let issues = run(&mut s, "review.issues", json!({}));
+    let words: Vec<&str> = issues.as_array().into_iter().flatten().filter_map(|i| i["text"].as_str()).collect();
+    assert_eq!(words, ["szoveg", "Thsi"], "{issues}");
+    // Malformed language tags are refused.
+    assert!(s.run("review.language", &json!({"lang": "hu HU; x"})).is_err());
+    assert!(s.run("review.language", &json!({"lang": ""})).is_err());
+}
+
+/// New blank documents take the editing language (the front end sets it from a Hungarian
+/// interface); documents with text, a file or edits keep theirs.
+#[test]
+fn blank_documents_take_the_editing_language() {
+    let mut s = s();
+    assert!(!s.adopt_editing_lang(), "no editing language: nothing changes");
+    s.prefs.editing_lang = Some("hu-HU".into());
+    assert!(s.adopt_editing_lang());
+    assert_eq!(s.doc.styles.default_chr.lang.as_deref(), Some("hu-HU"));
+    assert!(!s.dirty, "adopting the language is not an edit");
+    run(&mut s, "file.new", json!({}));
+    assert_eq!(s.doc.styles.default_chr.lang.as_deref(), Some("hu-HU"), "File › New blank");
+    run(&mut s, "file.new", json!({"template": "sample"}));
+    assert_ne!(s.doc.styles.default_chr.lang.as_deref(), Some("hu-HU"), "templates keep their language");
+    assert!(!s.adopt_editing_lang(), "a document with text keeps its language");
+    let mut typed = Session::new(wordcraft_doc::Document::new());
+    run(&mut typed, "text.insert", json!({"text": "Hello"}));
+    typed.prefs.editing_lang = Some("hu-HU".into());
+    assert!(!typed.adopt_editing_lang());
+    assert_eq!(typed.doc.styles.default_chr.lang.as_deref(), Some("en-US"));
+}

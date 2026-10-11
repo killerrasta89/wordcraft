@@ -876,6 +876,47 @@ fn layout(app: &mut WordApp, ui: &mut Ui) {
     });
 }
 
+/// Languages with a spelling dictionary, as (tag, label): Review › Language offers these.
+pub(crate) const PROOF_LANGS: &[(&str, &str)] = &[("en-US", "English (United States)"), ("hu-HU", "Hungarian")];
+
+fn is_hungarian(tag: &str) -> bool {
+    tag.split(['-', '_']).next().is_some_and(|p| p.eq_ignore_ascii_case("hu"))
+}
+
+/// The language at the caret (or of the selection's start) and whether spelling is off there,
+/// resolved through direct formatting, styles and the document's default language.
+pub(crate) fn caret_language(app: &WordApp) -> (String, bool) {
+    let s = &app.session;
+    let style = s.doc.para_at(&s.sel.focus).and_then(|p| p.props.style.clone());
+    let rc = s.doc.styles.resolve_char(style.as_deref(), &s.typing_props());
+    (rc.lang.unwrap_or_else(|| "en-US".into()), rc.no_proof)
+}
+
+/// A language tag's name in the interface: the proofing languages by name, others as the tag.
+pub(crate) fn language_label(tag: &str) -> String {
+    if is_hungarian(tag) {
+        tl!("Hungarian").to_string()
+    } else if tag.eq_ignore_ascii_case("en-US") {
+        tl!("English (United States)").to_string()
+    } else {
+        tag.to_string()
+    }
+}
+
+/// Review › Language (and the status bar's language): the selection's language, which decides
+/// the spelling dictionary; "Do not check spelling or grammar"; Set as Default, which makes the
+/// current language the document's default.
+pub(crate) fn language_menu_items(ui: &mut Ui, app: &mut WordApp) {
+    let (cur, no_proof) = caret_language(app);
+    for (tag, label) in PROOF_LANGS {
+        let checked = if is_hungarian(tag) { is_hungarian(&cur) } else { cur.eq_ignore_ascii_case(tag) };
+        mi_check(ui, app, label, checked, "review.language", json!({"lang": tag}));
+    }
+    ui.separator();
+    mi_check(ui, app, "Do not check spelling or grammar", no_proof, "review.language", json!({"lang": cur, "noProof": !no_proof}));
+    mi(ui, app, "Set as Default", "review.language", json!({"lang": cur, "default": true}));
+}
+
 /// Arrange › Rotate: turn 90° either way or flip (the angle and mirroring, not the pixels).
 fn rotate_menu(ui: &mut Ui, app: &mut WordApp, label: Option<&str>) {
     menu_button(ui, app, "rotate", label, "Rotate", false, |ui, app| {
@@ -1073,7 +1114,7 @@ fn review(app: &mut WordApp, ui: &mut Ui) {
     });
     group(ui, "Language", None, app, |ui, app| {
         big(ui, app, "translate", "Translate", "review.translate", json!({}), false);
-        big(ui, app, "language", "Language", "review.language", json!({}), false);
+        menu_button(ui, app, "language", Some("Language"), "Language", true, language_menu_items);
     });
     group(ui, "Comments", None, app, |ui, app| {
         big(ui, app, "newComment", "New\nComment", "review.newComment", json!({}), false);

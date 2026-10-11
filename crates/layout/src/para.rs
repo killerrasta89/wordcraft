@@ -11,6 +11,7 @@ use wordcraft_doc::props::{Align, CharProps, LineSpacing, ParaProps, TabAlign, T
 use wordcraft_doc::resolve::{ResolvedChar, ResolvedPara};
 use wordcraft_doc::{Document, Paragraph};
 use wordcraft_fonts::FaceRef;
+use wordcraft_proof::ProofLang;
 
 use crate::fields::{FieldCtx, field_text};
 
@@ -897,7 +898,7 @@ pub fn layout_para(p: &Paragraph, env: &ParaEnv) -> ParaLayout {
         text_len: p.text.len(),
         has_page_fields,
         notes,
-        issues: if env.proofing { proof_issues(p) } else { Vec::new() },
+        issues: if env.proofing { proof_issues(doc, p, table_chr) } else { Vec::new() },
         drop_cap,
         hyph_after: Vec::new(),
         bidi_levels: b.levels,
@@ -1800,8 +1801,9 @@ impl ParaLayout {
     }
 }
 
-/// Spelling and grammar issues in a paragraph (skipping "do not check" and hidden runs).
-fn proof_issues(p: &Paragraph) -> Vec<(usize, usize, bool)> {
+/// Spelling and grammar issues in a paragraph (skipping "do not check" and hidden runs), each
+/// word checked in its run's language.
+fn proof_issues(doc: &Document, p: &Paragraph, table_chr: Option<&CharProps>) -> Vec<(usize, usize, bool)> {
     if p.text.trim().is_empty() || p.text.len() > 100_000 {
         return Vec::new();
     }
@@ -1809,10 +1811,39 @@ fn proof_issues(p: &Paragraph) -> Vec<(usize, usize, bool)> {
     let skip = |a: usize, b: usize| {
         p.run_ranges().any(|(r, c)| r.start < b && a < r.end && (c.no_proof == Some(true) || c.hidden == Some(true) || c.link.is_some()))
     };
-    let mut v: Vec<(usize, usize, bool)> =
-        wordcraft_proof::check_spelling(&text).into_iter().filter(|i| !skip(i.start, i.end)).map(|i| (i.start, i.end, false)).collect();
-    v.extend(wordcraft_proof::check_grammar(&text).into_iter().filter(|i| !skip(i.start, i.end)).map(|i| (i.start, i.end, true)));
+    let langs = proof_langs(doc, p, table_chr);
+    let lang_at = |off: usize| proof_lang_at(&langs, off);
+    let mut v: Vec<(usize, usize, bool)> = wordcraft_proof::check_spelling_with(&text, &lang_at)
+        .into_iter()
+        .filter(|i| !skip(i.start, i.end))
+        .map(|i| (i.start, i.end, false))
+        .collect();
+    v.extend(wordcraft_proof::check_grammar_with(&text, &lang_at).into_iter().filter(|i| !skip(i.start, i.end)).map(|i| (i.start, i.end, true)));
     v
+}
+
+/// The proofing language of each run of `p`, from its resolved language (direct formatting,
+/// character and paragraph styles, the table style `table_chr`, document defaults). Runs with
+/// the same language are merged; offsets are bytes of `p.text`.
+pub fn proof_langs(doc: &Document, p: &Paragraph, table_chr: Option<&CharProps>) -> Vec<(std::ops::Range<usize>, ProofLang)> {
+    let para_style = p.props.style.as_deref();
+    let mut out: Vec<(std::ops::Range<usize>, ProofLang)> = Vec::new();
+    for (r, c) in p.run_ranges() {
+        let lang = ProofLang::from_tag(doc.styles.resolve_char_in(para_style, table_chr, c).lang.as_deref());
+        match out.last_mut() {
+            Some((last, l)) if *l == lang && last.end == r.start => last.end = r.end,
+            _ => out.push((r, lang)),
+        }
+    }
+    if out.is_empty() {
+        out.push((0..p.text.len(), ProofLang::from_tag(doc.styles.resolve_char_in(para_style, table_chr, &p.mark).lang.as_deref())));
+    }
+    out
+}
+
+/// The language at byte `off` in runs from [`proof_langs`] (the last run's past the end).
+pub fn proof_lang_at(langs: &[(std::ops::Range<usize>, ProofLang)], off: usize) -> ProofLang {
+    langs.iter().find(|(r, _)| r.contains(&off)).or(langs.last()).map(|(_, l)| *l).unwrap_or_default()
 }
 
 /// Text for proofing with the same byte offsets: inline objects and tracked deletions become

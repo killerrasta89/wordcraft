@@ -3,13 +3,19 @@ name = "wordcraft-proof"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-description = "WordCraft proofing: spelling (public-domain word list), suggestions, grammar checks, hyphenation"
+description = "WordCraft proofing: spelling (public-domain English word list; Hungarian Magyar Ispell dictionary via spellbook), suggestions, grammar checks, hyphenation"
 
 [lints]
 workspace = true
 
 [dependencies]
 log = { workspace = true }
+miniz_oxide = "0.8"
+# Hunspell-compatible checker (pure Rust, MPL-2.0) for the Hungarian dictionary. 0.4.2 fixes a
+# panic on compound patterns next to multi-byte letters that Hungarian hits.
+spellbook = "0.4.2"
+
+[build-dependencies]
 miniz_oxide = "0.8"
 
 [dev-dependencies]

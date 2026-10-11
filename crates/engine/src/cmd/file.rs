@@ -111,7 +111,13 @@ fn new(s: &mut Session, v: &Value) -> CmdResult {
         "letter" => crate::sample::letter(),
         "resume" => crate::sample::resume(),
         "report" => crate::sample::report(),
-        _ => Document::new(),
+        _ => {
+            let mut d = Document::new();
+            if let Some(lang) = &s.prefs.editing_lang {
+                d.styles.default_chr.lang = Some(lang.clone());
+            }
+            d
+        }
     };
     s.set_document(doc);
     s.path = None;

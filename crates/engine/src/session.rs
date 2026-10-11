@@ -286,11 +286,16 @@ pub struct Prefs {
     /// Track Changes Options: what markup shows and how revisions are drawn (per user, as in
     /// Word).
     pub markup: wordcraft_layout::display::MarkupOptions,
+    /// The language new blank documents are written in (their default `w:lang`), when it isn't
+    /// the built-in English (United States). The front end derives it from the interface language
+    /// when there is a proofing dictionary for it (Hungarian: `hu-HU`); it isn't saved.
+    #[serde(skip)]
+    pub editing_lang: Option<String>,
 }
 
 impl Default for Prefs {
     fn default() -> Self {
-        Prefs { count_notes: true, markup: Default::default() }
+        Prefs { count_notes: true, markup: Default::default(), editing_lang: None }
     }
 }
 
@@ -503,6 +508,22 @@ impl Session {
     }
 
     /// Replace the document (open/new).
+    /// Give an untouched blank document (untitled, unchanged, no text) the editing language
+    /// ([`Prefs::editing_lang`]) as its default language. Returns whether it changed; documents
+    /// with text, a file or edits are never changed.
+    pub fn adopt_editing_lang(&mut self) -> bool {
+        let Some(lang) = self.prefs.editing_lang.clone() else { return false };
+        if self.path.is_some() || self.dirty || self.doc.styles.default_chr.lang.as_deref() == Some(lang.as_str()) {
+            return false;
+        }
+        if self.doc.body.len() != 1 || self.doc.body.first().and_then(|b| b.as_para()).is_none_or(|p| !p.text.is_empty()) {
+            return false;
+        }
+        self.doc.styles.default_chr.lang = Some(lang);
+        self.relayout();
+        true
+    }
+
     pub fn set_document(&mut self, doc: Document) {
         self.document_id = self.document_id.wrapping_add(1);
         self.doc = doc;

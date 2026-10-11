@@ -342,7 +342,17 @@ pub fn specs() -> Vec<CommandSpec> {
         .params(r#"{"format": "decimal|upperRoman|lowerLetter…", "text"?: "%1.", "start"?: n}"#),
         CommandSpec::new("review.language", "Language", "Review › Language", |s, v| {
             let lang = p::str(v, "lang").unwrap_or("en-US").to_string();
+            // A BCP 47 tag: letters, digits and hyphens (it is written to `w:lang`).
+            if lang.is_empty() || lang.len() > 35 || !lang.chars().all(|c| c.is_ascii_alphanumeric() || c == '-') {
+                return Err(CmdError::Params(format!("`lang` must be a language tag such as en-US or hu-HU, not {lang:?}")));
+            }
             let no_proof = p::bool(v, "noProof");
+            if p::bool(v, "default") == Some(true) {
+                // The document's default language: text without a language of its own takes it.
+                s.doc.styles.default_chr.lang = Some(lang.clone());
+                s.relayout();
+                return Ok(json!({"default": lang}));
+            }
             super::format::apply(s, &|c| {
                 c.lang = Some(lang.clone());
                 if let Some(np) = no_proof {
@@ -350,7 +360,7 @@ pub fn specs() -> Vec<CommandSpec> {
                 }
             })
         })
-        .params(r#"{"lang": "en-US|en-GB|fr-FR|…", "noProof"?: bool}"#),
+        .params(r#"{"lang": "en-US|hu-HU|en-GB|fr-FR|…" (spelling is checked in English and Hungarian), "noProof"?: bool, "default"?: bool (set the document's default language instead of the selection's)}"#),
         CommandSpec::new("review.showMarkup", "Show Markup", "Review › Tracking", |s, v| {
             s.view.show_markup = p::bool(v, "value").unwrap_or(!s.view.show_markup);
             s.relayout();

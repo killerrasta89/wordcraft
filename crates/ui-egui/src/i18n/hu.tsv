@@ -1,0 +1,1339 @@
+# Hungarian (hu) interface catalog. Columns, separated by a TAB:
+#   context <TAB> English source <TAB> translation
+#   context    empty (WordCraft uses no contexts yet)
+#   source     the English text exactly as in the code (tl!(...), ribbon labels, command labels)
+#   escapes    \n  \t  \\  inside a column. `{name}` placeholders must appear in both columns, and a
+#              trailing "…" in one needs one in the other.
+#   Lines starting with # and blank lines are ignored. A missing entry shows in English.
+#
+# Commands and menu items are nouns of action (Mentés, Beillesztés); second-person text uses the
+# informal "te"; labels use sentence case; Hungarian quotation marks („…”) and decimal commas.
+# A noun after a number stays singular in Hungarian ({words} szó), so count labels need no plural
+# forms. Product and format names stay as they are (WordCraft, PDF, Markdown, MCP …).
+# Clean room: every entry was written from the plain meaning of the English label in ordinary
+# computing vocabulary. No Microsoft Word (or other product) localisation, string table or
+# translated UI was consulted or copied; add entries the same way.
+# Author: Claude (Anthropic) for @killerrasta89; MIT OR Apache-2.0, like WordCraft.
+
+	(no style)	(nincs stílus)
+	(no suggestions)	(nincs javaslat)
+	1.5 Line Spacing	1,5-es sorköz
+	A free, open-source word processor written from scratch in Rust.\nPart of the Crafting Apps from the ArtCraft team.	Ingyenes, nyílt forráskódú szövegszerkesztő, a nulláról Rustban írva.\nAz ArtCraft csapat Crafting Apps családjának tagja.
+	About	Névjegy
+	About WordCraft	A WordCraft névjegye
+	Accept	Elfogadás
+	Accept All Changes	Minden módosítás elfogadása
+	Accept This Change	A módosítás elfogadása
+	Accessibility	Akadálymentesség
+	Add	Hozzáadás
+	Add Object to Selection	Objektum hozzáadása a kijelöléshez
+	Add Space Before Paragraph	Térköz hozzáadása a bekezdés előtt
+	Add space between Asian and Latin text	Térköz ázsiai és latin betűs szöveg között
+	Add space between Asian text and numbers	Térköz ázsiai szöveg és számok között
+	Add tab stop at:	Tabulátor hozzáadása itt:
+	Add Text	Szöveg hozzáadása
+	Add a Table	Táblázat hozzáadása
+	Add a comment	Megjegyzés hozzáadása
+	Add to Dictionary	Felvétel a szótárba
+	Add to Style Gallery	Felvétel a stílusgyűjteménybe
+	Address Block	Címblokk
+	Address:	Cím:
+	Address\nBlock	Cím-\nblokk
+	Adjust	Igazítás
+	Advanced	Speciális
+	Advanced Find	Részletes keresés
+	Advanced Find…	Részletes keresés…
+	After:	Utána:
+	Agents	Ügynökök
+	Align	Igazítás
+	Align Left	Balra igazítás
+	Align Right	Jobbra igazítás
+	Aligned at:	Igazítás helye:
+	Alignment	Igazítás
+	All Borders	Minden szegély
+	All Caps	Csupa nagybetű
+	All Markup	Minden jelölés
+	All caps	Csupa nagybetű
+	Allow hanging punctuation	Kilógó írásjelek engedélyezése
+	Allow Latin text to wrap in the middle of a word	Latin betűs szöveg tördelése szó közben is
+	Alt Text	Helyettesítő szöveg
+	Apply Asian line-breaking rules (kinsoku)	Ázsiai sortörési szabályok (kinsoku)
+	Apply Character Style	Karakterstílus alkalmazása
+	Apply Style	Stílus alkalmazása
+	Arrange	Elrendezés
+	Arrange\nAll	Az összes\nelrendezése
+	Arrow	Nyíl
+	Artistic Effects	Művészi effektusok
+	Asian Typography	Ázsiai tipográfia
+	Author	Szerző
+	AutoCorrect Options	Automatikus javítás beállításai
+	AutoFit	Automatikus méretezés
+	AutoFit Contents	Méretezés a tartalomhoz
+	AutoFit Window	Méretezés az ablakhoz
+	AutoSave	Automatikus mentés
+	AutoSave saves every change to the file (needs a saved document)	Az automatikus mentés minden módosítást azonnal a fájlba ír (ehhez mentett dokumentum kell)
+	AutoSave isn't available in the browser: it can't write to your files. Save downloads a copy.	A böngészőben nincs automatikus mentés, mert nem írhat a fájljaidba. A Mentés egy másolatot tölt le.
+	AutoSave only keeps .docx, .odt and .rtf files; {name} can't keep all formatting. Save as .docx to turn on AutoSave.	Az automatikus mentés csak .docx, .odt és .rtf fájlokkal működik; a(z) {name} nem tudja megőrizni a teljes formázást. Mentsd .docx formátumban az automatikus mentés bekapcsolásához.
+	Balloons	Buborékok
+	Bullet	Felsorolásjel
+	By author	Szerző szerint
+	Changed lines:	Módosított sorok:
+	Click level to modify:	Módosítandó szint:
+	Color only	Csak szín
+	Define New Multilevel List	Új többszintű lista definiálása
+	Define New Multilevel List…	Új többszintű lista definiálása…
+	Deletions:	Törlések:
+	Enter formatting for number:	A szám formátuma:
+	Follow number with:	A szám után:
+	Formatting	Formázás
+	Include level number from:	Szintszám ebből:
+	Ink	Szabadkézi rajz
+	Insertions and Deletions	Beszúrások és törlések
+	Insertions:	Beszúrások:
+	Left border	Bal szegély
+	Legal style numbering	Jogi stílusú számozás
+	Link level to style:	Szint csatolása stílushoz:
+	List Definition	Listadefiníció
+	Nothing	Semmi
+	Number alignment:	Szám igazítása:
+	Number format	Számformátum
+	Number style for this level:	A szint számstílusa:
+	Outside border	Külső szegély
+	Restart list after:	Lista újrakezdése ezután:
+	Right border	Jobb szegély
+	Save the document to turn on AutoSave	Mentsd a dokumentumot az automatikus mentés bekapcsolásához
+	Save the document to turn on AutoSave (a file you have only opened isn't rewritten until you save it)	Mentsd a dokumentumot az automatikus mentés bekapcsolásához (a csak megnyitott fájlt nem írjuk felül, amíg nem mented)
+	AutoText	Autoszöveg
+	Automatic	Automatikus
+	Automatic ({language})	Automatikus ({language})
+	Automatic Table 1 (3 levels)	1. automatikus tartalomjegyzék (3 szint)
+	Automatic Table 2 (2 levels)	2. automatikus tartalomjegyzék (2 szint)
+	Automatic follows your system's language. Menus and commands change; your documents don't.	Az Automatikus a rendszer nyelvét követi. A menük és a parancsok nyelve változik, a dokumentumaid nem.
+	Backspace	Backspace
+	Banded Columns	Sávos oszlopok
+	Banded Rows	Sávos sorok
+	Before:	Előtte:
+	Bibliography	Irodalomjegyzék
+	Binary assets added	Hozzáadott bináris fájlok
+	Binary assets removed	Eltávolított bináris fájlok
+	Blank	Üres
+	Blank (Three Columns)	Üres (három hasáb)
+	Blank Page	Üres oldal
+	Blank document	Üres dokumentum
+	Block\nAuthors	Szerzők\nletiltása
+	Bold	Félkövér
+	Bookmark	Könyvjelző
+	Bookmark name:	Könyvjelző neve:
+	Border Painter	Szegélyfestő
+	Border\nPainter	Szegély-\nfestő
+	Borders	Szegélyek
+	Tab stop position:	Tabulátor helye:
+	Default tab stops:	Alapértelmezett tabulátorok:
+	Tab stops to be cleared:	Törlendő tabulátorok:
+	All	Mind
+	Decimal	Decimális
+	Bar	Vonal
+	Leader	Kitöltés
+	Set	Beállítás
+	Page Border	Oldalszegély
+	Apply to:	Alkalmazás:
+	Whole document	A teljes dokumentumra
+	This section	Erre a szakaszra
+	Fill	Kitöltőszín
+	Setting:	Típus:
+	3-D	Térhatású
+	Custom	Egyéni
+	Style:	Stílus:
+	Dot dash	Pont-vonal
+	Triple	Hármas
+	Between	Bekezdések között
+	Borders and Shading	Szegély és mintázat
+	Tabs…	Tabulátorok…
+	Borders and Shading…	Szegély és mintázat…
+	Bottom Border	Alsó szegély
+	Bottom Margin	Alsó margó
+	Bottom of Page	Oldal alja
+	Bottom:	Alsó:
+	Box	Keret
+	Breaks	Törések
+	Bring Forward	Előrébb hozás
+	Bullet Library	Felsorolásjel-tár
+	Bullets	Felsorolás
+	Calendar	Naptár
+	Cancel	Mégse
+	Capitalize Each Word	Minden Szó Nagy Kezdőbetűvel
+	Captions	Feliratok
+	Cell Margins	Cellamargók
+	Cell Size	Cellaméret
+	Cell\nMargins	Cella-\nmargók
+	Center	Középre igazítás
+	Change	Módosítás
+	Change Case	Kis- és nagybetűk
+	Change List Level	Listaszint módosítása
+	Change Picture	Kép cseréje
+	Change Shape	Alakzat módosítása
+	Changes	Módosítások
+	Character Position	Karakter pozíciója
+	Character Scale	Karakterméretezés
+	Character Shading	Karakter mintázata
+	Character Spacing	Betűköz
+	Characters	Karakterek
+	Characters (no spaces)	Karakterek (szóközök nélkül)
+	Characters (with spaces)	Karakterek (szóközökkel)
+	Chart	Diagram
+	Check Accessibility	Akadálymentesség ellenőrzése
+	Check Compatibility	Kompatibilitás ellenőrzése
+	Check Spelling as You Type	Helyesírás ellenőrzése gépelés közben
+	Check for Errors	Hibák keresése
+	Check\nAccessibility	Akadálymentesség\nellenőrzése
+	Citation Style	Hivatkozási stílus
+	Citations & Bibliography	Hivatkozások és irodalomjegyzék
+	Clear	Törlés
+	Clear All	Az összes törlése
+	Clear All Formatting	Minden formázás törlése
+	Clear Character Formatting	Karakterformázás törlése
+	Clear Character Style	Karakterstílus törlése
+	Clear Formatting Level	Formázási szint törlése
+	Clear Paragraph Formatting	Bekezdésformázás törlése
+	Click a border between two cells to merge them. Esc stops.	Kattints két cella közötti szegélyre az egyesítésükhöz. Az Esc befejezi.
+	Clipboard	Vágólap
+	Clipboard Pane	Vágólap panel
+	Clipboard Items	Vágólap elemei
+	Paste Clipboard Item	Vágólapelem beillesztése
+	Paste All	Az összes beillesztése
+	Delete Clipboard Item	Vágólapelem törlése
+	Click an item to paste it.	Kattints egy elemre a beillesztéséhez.
+	Nothing collected yet. Items you copy or cut appear here.	Még nincs itt semmi. A másolt vagy kivágott elemek itt jelennek meg.
+	(picture or object)	(kép vagy objektum)
+	Close	Bezárás
+	Close Header and Footer	Élőfej és élőláb bezárása
+	Collapse Selection	Kijelölés szűkítése
+	Color	Szín
+	Color:	Szín:
+	Colors	Színek
+	Column	Oszlop
+	Column Break	Hasábtörés
+	Columns	Hasábok
+	Combine	Összefésülés
+	Commands	Parancsok
+	Comment	Megjegyzés
+	Comments	Megjegyzések
+	Comments Pane	Megjegyzések panel
+	Community\nDiscord	Discord-\nközösség
+	Compact	Tömör
+	Compare	Összehasonlítás
+	Compress Pictures	Képek tömörítése
+	Compress punctuation at the start of a line	Írásjelek tömörítése a sor elején
+	Continuous	Folyamatos
+	Convert	Átalakítás
+	Convert Text to Table	Szöveg átalakítása táblázattá
+	Convert Text to Table…	Szöveg átalakítása táblázattá…
+	Convert to Text	Átalakítás szöveggé
+	Copy	Másolás
+	Copy Formatting	Formátum másolása
+	Corrections	Javítások
+	Count words in text boxes and notes	Szövegdobozok és jegyzetek szavainak számlálása
+	Cover Page	Címlap
+	Create	Létrehozás
+	Create New Style	Új stílus létrehozása
+	Create a Style	Stílus létrehozása
+	Create an interactive outline of your document.\n\nIt's a great way to keep track of where you are or quickly move your content around.\n\nTo get started, go to the Home tab and apply Heading styles to the headings in your document.	Készíts interaktív vázlatot a dokumentumodról.\n\nÍgy könnyen követheted, hol tartasz, és gyorsan átrendezheted a tartalmat.\n\nKezdésként a Kezdőlap lapon alkalmazz Címsor stílusokat a dokumentum címsoraira.
+	Crop	Körülvágás
+	Cross-reference	Kereszthivatkozás
+	Current Position	Jelenlegi pozíció
+	Current style: {style}	Jelenlegi stílus: {style}
+	Custom Margins…	Egyéni margók…
+	Custom Watermark	Egyéni vízjel
+	Custom Watermark…	Egyéni vízjel…
+	Customize Quick Access Toolbar	Gyorselérési eszköztár testreszabása
+	Cut	Kivágás
+	Dark Mode	Sötét mód
+	Dashed	Szaggatott
+	Data	Adatok
+	Date & Time	Dátum és idő
+	Decrease Font Size	Betűméret csökkentése
+	Decrease Indent	Behúzás csökkentése
+	Default	Alapértelmezett
+	Define New Bullet	Új felsorolásjel definiálása
+	Define New Number Format	Új számformátum definiálása
+	Delete	Törlés
+	Delete Cells	Cellák törlése
+	Delete Columns	Oszlopok törlése
+	Delete Comment	Megjegyzés törlése
+	Delete Next Word	Következő szó törlése
+	Delete Previous Word	Előző szó törlése
+	Delete Rows	Sorok törlése
+	Delete Style	Stílus törlése
+	Delete Table	Táblázat törlése
+	Design	Tervezés
+	Diagonal	Átlós
+	Diamond	Rombusz
+	Dictate	Diktálás
+	Different First Page	Eltérő első oldal
+	Different Odd & Even Pages	Eltérő páros és páratlan oldalak
+	Direct formatting	Közvetlen formázás
+	Discord	Discord
+	Discord community	Discord-közösség
+	Display	Megjelenítés
+	Display for Review	Megjelenítés véleményezéshez
+	Distribute Columns	Oszlopok egyenletes elosztása
+	Distribute Rows	Sorok egyenletes elosztása
+	Distributed	Elosztott
+	Do Not Show in TOC	Ne jelenjen meg a tartalomjegyzékben
+	Document End	Dokumentum vége
+	Document Formatting	Dokumentumformázás
+	Document Property	Dokumentumtulajdonság
+	Document Start	Dokumentum eleje
+	Document Text	Dokumentum szövege
+	Document Title	Dokumentum címe
+	Documents you open will show up here.	A megnyitott dokumentumaid itt jelennek meg.
+	Dot-dash	Pont-vonal
+	Dotted	Pontozott
+	Double	Dupla
+	Double Spacing	Dupla sorköz
+	Double Strikethrough	Dupla áthúzás
+	Double Underline	Dupla aláhúzás
+	Down	Le
+	Draft	Piszkozat
+	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	Húzz egy téglalapot táblázat rajzolásához, vagy egy vonalat cellákon át a felosztásukhoz. Az Esc befejezi.
+	Draw	Rajzolás
+	Draw Table	Táblázat rajzolása
+	Drawing Tools	Rajzeszközök
+	Drawing\nCanvas	Rajz-\nvászon
+	Drop Cap	Iniciálé
+	Drops all formatting and pastes plain text.	Minden formázást elhagy, és egyszerű szöveget illeszt be.
+	Edit Comment	Megjegyzés szerkesztése
+	Edit Footer	Élőláb szerkesztése
+	Edit Header	Élőfej szerkesztése
+	Edit Recipient List	Címzettlista szerkesztése
+	Edit\nRecipient List	Címzettlista\nszerkesztése
+	Edited	Szerkesztve
+	Editing	Szerkesztés
+	Editing header/footer	Élőfej/élőláb szerkesztése
+	Editing — edit the document directly	Szerkesztés – a dokumentum közvetlen szerkesztése
+	Editor	Szerkesztő
+	Effects	Effektusok
+	Emboss	Domború
+	Encrypt with Password	Titkosítás jelszóval
+	English (United States)	Angol (Egyesült Államok)
+	Engrave	Vésett
+	Enter page number:	Add meg az oldalszámot:
+	Envelopes	Borítékok
+	Eraser	Radír
+	Even Page	Páros oldal
+	Every command is available to scripts and AI agents: run `wordcraft-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	Minden parancs elérhető szkriptekből és MI-ügynökökből is: MCP-kiszolgálóhoz futtasd a `wordcraft-cli mcp` parancsot, a JSON vezérlőcsatornához pedig indítsd az alkalmazást a `--control <port>` kapcsolóval.
+	Export	Exportálás
+	Export PDF	PDF exportálása
+	Export Page as PNG	Oldal exportálása PNG-ként
+	Export a copy to share (PDF, Word document)	Másolat exportálása megosztáshoz (PDF, Word-dokumentum)
+	Exported {path}	Exportálva: {path}
+	Extend Selection	Kijelölés bővítése
+	Field	Mező
+	File	Fájl
+	Find	Keresés
+	Find Next	Következő keresése
+	Find Previous	Előző keresése
+	Find Recipient	Címzett keresése
+	Find and Replace	Keresés és csere
+	Find what:	Keresett szöveg:
+	Finish	Befejezés
+	Finish & Merge	Befejezés és egyesítés
+	Finish &\nMerge	Befejezés és\negyesítés
+	First Column	Első oszlop
+	First commit	Első commit
+	First line:	Első sor:
+	Fixed Column Width	Rögzített oszlopszélesség
+	Focus	Fókusz mód
+	Font	Betűtípus
+	Font Color	Betűszín
+	Font Dialog	Betűtípus párbeszédpanel
+	Font Size	Betűméret
+	Font color:	Betűszín:
+	Font:	Betűtípus:
+	Fonts	Betűtípusok
+	Footer	Élőláb
+	Footnote and Endnote	Lábjegyzet és végjegyzet
+	Footnotes	Lábjegyzetek
+	Format	Formátum
+	Format Page Numbers	Oldalszámok formázása
+	Format Page Numbers…	Oldalszámok formázása…
+	Format Painter	Formátummásoló
+	Formatted Text	Formázott szöveg
+	Formatting at Selection	A kijelölés formázása
+	Formula	Képlet
+	General	Általános
+	Go To	Ugrás
+	Go To (⌘⌥G)	Ugrás (⌘⌥G)
+	Go To…	Ugrás…
+	Go to	Ugrás
+	Grab bag	Egyéb megőrzött adatok
+	Greeting Line	Megszólítás
+	Greeting\nLine	Megszólítás\nsor
+	Gridlines	Rácsvonalak
+	Group	Csoportosítás
+	Grow Font 1 Point	Betűméret növelése 1 ponttal
+	HTML Format	HTML formátum
+	Hanging Indent	Függő behúzás
+	Header	Élőfej
+	Header & Footer	Élőfej és élőláb
+	Header Row	Fejlécsor
+	Header/Footer Position	Élőfej/élőláb helye
+	Heading 1	Címsor 1
+	Heading 2	Címsor 2
+	Heading 3	Címsor 3
+	Headings	Címsorok
+	Heart	Szív
+	Help	Súgó
+	Hidden	Rejtett
+	Highlight Merge Fields	Egyesítési mezők kiemelése
+	Highlight\nMerge Fields	Egyesítési mezők\nkiemelése
+	Highlighter	Kiemelő
+	Home	Kezdőlap
+	Horizontal	Vízszintes
+	Horizontal Line	Vízszintes vonal
+	Hyphenation	Elválasztás
+	Icons	Ikonok
+	Ignore All	Az összes kihagyása
+	Illustrations	Illusztrációk
+	Immersive	Elmélyült
+	Immersive Reader	Elmélyült olvasó
+	Immersive\nReader	Elmélyült\nolvasó
+	Increase Font Size	Betűméret növelése
+	Increase Indent	Behúzás növelése
+	Indent	Behúzás
+	Indentation	Behúzás
+	Indents	Behúzások
+	Indents and Spacing	Behúzás és térköz
+	Index	Tárgymutató
+	Info	Információ
+	Ink to\nMath	Szabadkézi rajz\nképletté
+	Ink to\nShape	Szabadkézi rajz\nalakzattá
+	Ink\nReplay	Rajz\nvisszajátszása
+	Insert	Beszúrás
+	Insert Above	Beszúrás fölé
+	Insert Below	Beszúrás alá
+	Insert Caption	Felirat beszúrása
+	Insert Citation	Hivatkozás beszúrása
+	Insert Endnote	Végjegyzet beszúrása
+	Insert Footnote	Lábjegyzet beszúrása
+	Insert Hyperlink	Hiperhivatkozás beszúrása
+	Insert Index	Tárgymutató beszúrása
+	Insert Left	Beszúrás balra
+	Insert Merge Field	Egyesítési mező beszúrása
+	Insert Merge\nField	Egyesítési mező\nbeszúrása
+	Insert Right	Beszúrás jobbra
+	Insert Shapes	Alakzatok beszúrása
+	Insert Table	Táblázat beszúrása
+	Insert Table of Authorities	Jogforrásjegyzék beszúrása
+	Insert Table of Figures	Ábrajegyzék beszúrása
+	Insert Table…	Táblázat beszúrása…
+	Insert\nAbove	Beszúrás\nfölé
+	Insert\nCaption	Felirat\nbeszúrása
+	Insert\nCitation	Hivatkozás\nbeszúrása
+	Insert\nFootnote	Lábjegyzet\nbeszúrása
+	Inside Borders	Belső szegélyek
+	Inspect Document	Dokumentum vizsgálata
+	Inspect Styles at Selection	A kijelölés stílusainak vizsgálata
+	Interface language:	Felület nyelve:
+	Italic	Dőlt
+	Join the ArtCraft community on Discord	Csatlakozz az ArtCraft közösséghez a Discordon
+	Join us on Discord: discord.gg/artcraft	Csatlakozz hozzánk a Discordon: discord.gg/artcraft
+	Justify	Sorkizárás
+	Keep Lines Together	Sorok együtt tartása
+	Keep Text Only	Csak a szöveg megtartása
+	Keep lines together	Sorok együtt tartása
+	Keep with Next	Együtt a következővel
+	Keep with next	Együtt a következővel
+	Keeps the fonts and formatting of the copied text.	Megtartja a másolt szöveg betűtípusait és formázását.
+	Labels	Címkék
+	Landscape	Fekvő
+	Language	Nyelv
+	Lasso	Lasszó
+	Last Column	Utolsó oszlop
+	Last commit	Utolsó commit
+	Layout	Elrendezés
+	Layout Summary	Elrendezés összegzése
+	Left	Bal
+	Left Border	Bal szegély
+	Left Margin	Bal margó
+	Left:	Bal:
+	Letter	Letter
+	Line	Vonal
+	Line Break	Sortörés
+	Line breaking	Sortördelés
+	Line End	Sor vége
+	Line Numbers	Sorszámok
+	Line Spacing	Sorköz
+	Line Spacing Options…	Sorköz beállításai…
+	Line Start	Sor eleje
+	Line and Page Breaks	Sor- és oldaltördelés
+	Line and Paragraph Spacing	Sorköz és bekezdésköz
+	Line delta	Sorok változása
+	Line spacing:	Sorköz:
+	Lines	Sorok
+	Lines added	Hozzáadott sorok
+	Lines deleted	Törölt sorok
+	Link	Hiperhivatkozás
+	Link to Previous	Csatolás az előzőhöz
+	Links	Hiperhivatkozások
+	Location: {path}	Hely: {path}
+	MIT OR Apache-2.0. Copyright (c) 2026 ArtCraft Team and the WordCraft contributors.	MIT VAGY Apache-2.0. Copyright (c) 2026 az ArtCraft csapat és a WordCraft közreműködői.
+	Macros	Makrók
+	Mailings	Levelezés
+	Manage Sources	Források kezelése
+	Many pages	Sok oldal
+	Margins	Margók
+	Mark Citation	Hivatkozás megjelölése
+	Mark Entry	Bejegyzés megjelölése
+	Mark\nCitation	Hivatkozás\nmegjelölése
+	Mark\nEntry	Bejegyzés\nmegjelölése
+	Markdown (*.md)	Markdown (*.md)
+	Match Fields	Mezők megfeleltetése
+	Match case	Kis- és nagybetűk megkülönböztetése
+	Matrix	Mátrix
+	Merge	Egyesítés
+	Merge Cells	Cellák egyesítése
+	Merge Formatting	Formázás egyesítése
+	Merged PRs	Beolvasztott PR-ek
+	Mirrored	Tükrözött
+	Moderate	Közepes
+	Modify Style	Stílus módosítása
+	Modify…	Módosítás…
+	More templates →	További sablonok →
+	Move or Resize	Áthelyezés vagy átméretezés
+	Multilevel List	Többszintű lista
+	Multiple Pages	Több oldal
+	Name (A–Z)	Név (A–Z)
+	Name:	Név:
+	Narrow  0.5" all	Keskeny  0,5" mindenhol
+	Navigation	Navigáció
+	Navigation Pane	Navigációs ablak
+	New	Új
+	New Comment	Új megjegyzés
+	New Paragraph	Új bekezdés
+	New Style…	Új stílus…
+	New Window	Új ablak
+	New from Template	Új sablonból
+	New\nComment	Új\nmegjegyzés
+	New\nWindow	Új\nablak
+	Next	Következő
+	Next Change	Következő módosítás
+	Next Comment	Következő megjegyzés
+	Next Footnote	Következő lábjegyzet
+	Next Page	Következő oldal
+	Next Record	Következő rekord
+	Next Section	Következő szakasz
+	No Border	Nincs szegély
+	No Color	Nincs szín
+	No Markup	Nincs jelölés
+	No Paragraph Space	Nincs bekezdésköz
+	No contributor data was built into this copy.	Ebbe a példányba nem kerültek közreműködői adatok.
+	No model credits were built into this copy.	Ebbe a példányba nem kerültek modellköszönetek.
+	No templates match your search.	Nincs a keresésnek megfelelő sablon.
+	Nonbreaking Hyphen	Nem törhető kötőjel
+	Nonbreaking Space	Nem törhető szóköz
+	None	Nincs
+	Normal  1" all	Normál  1" mindenhol
+	Normal Style	Normál stílus
+	Not available right now	Jelenleg nem érhető el
+	Not saved	Nincs mentve
+	Not saved yet	Még nincs mentve
+	Nudge	Finom mozgatás
+	Number of columns:	Oszlopok száma:
+	Number of rows:	Sorok száma:
+	Numbering	Számozás
+	OK	OK
+	Object	Objektum
+	Odd Page	Páratlan oldal
+	Office 2003 Default	Office 2003 alapértelmezés
+	One	Egy
+	One Page	Egy oldal
+	Open	Megnyitás
+	OpenDocument Text (*.odt)	OpenDocument szöveg (*.odt)
+	Optional Hyphen	Feltételes kötőjel
+	Options	Beállítások
+	Orientation	Tájolás
+	Outline	Vázlat
+	Outline Level	Vázlatszint
+	Outside Borders	Külső szegélyek
+	Oval	Ellipszis
+	PDF document (*.pdf)	PDF-dokumentum (*.pdf)
+	Page	Oldal
+	Page Background	Oldal háttere
+	Page Borders	Oldalszegélyek
+	Page Break	Oldaltörés
+	Page Break Before	Oldaltörés előtte
+	Page Breaks	Oldaltörések
+	Page Color	Oldalszín
+	Page Down	Page Down
+	Page Movement	Lapozás
+	Page Number	Oldalszám
+	Page Setup	Oldalbeállítás
+	Page Up	Page Up
+	Page Width	Oldalszélesség
+	Page X of Y	X. oldal / Y
+	Page break before	Oldaltörés előtte
+	Page image (*.png)	Oldalkép (*.png)
+	Page width	Oldalszélesség
+	Page {page}	{page}. oldal
+	Page {page} of {pages}	{page}. oldal / {pages}
+	Page\nBorders	Oldal-\nszegélyek
+	Page\nColor	Oldal-\nszín
+	Page\nNumber	Oldal-\nszám
+	Pages	Oldalak
+	Paragraph	Bekezdés
+	Paragraph Details	Bekezdés részletei
+	Paragraph Down	Bekezdés le
+	Paragraph Settings	Bekezdés beállításai
+	Paragraph Spacing	Bekezdésköz
+	Paragraph Up	Bekezdés fel
+	Paragraphs	Bekezdések
+	Paste	Beillesztés
+	Paste (⌘V)	Beillesztés (⌘V)
+	Paste Formatting	Formázás beillesztése
+	Paste Special	Irányított beillesztés
+	Paste Special…	Irányított beillesztés…
+	Paste as:	Beillesztés mint:
+	Paste: Keep Text Only	Beillesztés: csak a szöveg
+	Paste: Merge Formatting	Beillesztés: formázás egyesítése
+	Pen	Toll
+	Pencil	Ceruza
+	Picture Border	Kép szegélye
+	Picture Format	Képformátum
+	Picture Styles	Képstílusok
+	Pictures	Képek
+	Plain text (*.txt)	Egyszerű szöveg (*.txt)
+	Portrait	Álló
+	Position	Pozíció
+	Preview Results	Eredmények megtekintése
+	Preview\nResults	Eredmények\nmegtekintése
+	Previous	Előző
+	Previous Change	Előző módosítás
+	Previous Comment	Előző megjegyzés
+	Previous Record	Előző rekord
+	Previous Section	Előző szakasz
+	Print	Nyomtatás
+	Print Layout	Nyomtatási elrendezés
+	Print\nLayout	Nyomtatási\nelrendezés
+	Proofing	Nyelvi ellenőrzés
+	Proofing Issues	Nyelvi problémák
+	Properties	Tulajdonságok
+	Protect	Védelem
+	Protect Document	Dokumentum védelme
+	Quick Access Toolbar	Gyorselérési eszköztár
+	Quick Parts	Gyorsrészek
+	Quick Tables	Gyorstáblázatok
+	Read Aloud	Felolvasás
+	Read Mode	Olvasó mód
+	Read\nAloud	Fel-\nolvasás
+	Read\nMode	Olvasó\nmód
+	Reads the clipboard's rich text and keeps its formatting.	Beolvassa a vágólap formázott szövegét, és megtartja a formázását.
+	Reads the clipboard's web content and keeps its formatting.	Beolvassa a vágólap webes tartalmát, és megtartja a formázását.
+	Reading Highlight	Felolvasási kiemelés
+	Recent	Legutóbbiak
+	Record Macro	Makró rögzítése
+	Recover Unsaved Documents	Nem mentett dokumentumok helyreállítása
+	Rectangle	Téglalap
+	Redo	Mégis
+	Reduce Hanging Indent	Függő behúzás csökkentése
+	References	Hivatkozások
+	Reject	Elutasítás
+	Reject All Changes	Minden módosítás elutasítása
+	Reject Change	Módosítás elutasítása
+	Relaxed	Laza
+	Remove Background	Háttér eltávolítása
+	Remove Footer	Élőláb eltávolítása
+	Remove Header	Élőfej eltávolítása
+	Remove Hyperlink	Hiperhivatkozás eltávolítása
+	Remove Space After Paragraph	Térköz eltávolítása a bekezdés után
+	Remove Table of Contents	Tartalomjegyzék eltávolítása
+	Remove Watermark	Vízjel eltávolítása
+	Reopen	Újranyitás
+	Repeat	Ismétlés
+	Repeat Header Rows	Fejlécsorok ismétlése
+	Replace	Csere
+	Replace All	Az összes cseréje
+	Replace Document Text	A dokumentum szövegének cseréje
+	Replace with:	Csere erre:
+	Replay	Visszajátszás
+	Reply	Válasz
+	Report	Jelentés
+	Research	Kutatás
+	Researcher	Kutató
+	Reset Picture	Kép alaphelyzetbe állítása
+	Reset to Normal	Visszaállítás Normál stílusra
+	Resolve	Lezárás
+	Resolved	Lezárva
+	Restart Each Page	Újrakezdés minden oldalon
+	Restart Each Section	Újrakezdés minden szakaszban
+	Restart at 1	Újrakezdés 1-től
+	Restrict Editing	Szerkesztés korlátozása
+	Restrict\nEditing	Szerkesztés\nkorlátozása
+	Result	Eredmény
+	Results	Eredmények
+	Reverse the order	Fordított sorrend
+	Reviewing	Véleményezés
+	Reviewing Pane	Véleményezés panel
+	Reviewing — edits become suggestions	Véleményezés – a módosítások javaslatként jelennek meg
+	Rich Text Format (*.rtf)	Rich Text Format (*.rtf)
+	Rich Text Format (RTF)	Rich Text Format (RTF)
+	Right	Jobb
+	Right Border	Jobb szegély
+	Right Margin	Jobb margó
+	Right-to-Left Text Direction	Jobbról balra írás
+	Left-to-Right Text Direction	Balról jobbra írás
+	Right:	Jobb:
+	Rotate	Forgatás
+	Rounded Rectangle	Lekerekített téglalap
+	Rows & Columns	Sorok és oszlopok
+	Ruler	Vonalzó
+	Rules	Szabályok
+	Résumé	Önéletrajz
+	Save	Mentés
+	Save As	Mentés másként
+	Save a copy in another format. Printing goes through a PDF you can print from any viewer.	Másolat mentése más formátumban. A nyomtatás egy PDF-en keresztül történik, amelyet bármely megjelenítőből kinyomtathatsz.
+	Save as Template	Mentés sablonként
+	Saved	Mentve
+	Search Commands	Parancsok keresése
+	Search commands and help	Parancsok és súgó keresése
+	Search document	Keresés a dokumentumban
+	Search for templates	Sablonok keresése
+	Section Breaks	Szakasztörések
+	Section Properties	Szakasz tulajdonságai
+	Sections	Szakaszok
+	Select	Kijelölés
+	Select All	Az összes kijelölése
+	Select Cell	Cella kijelölése
+	Select Line	Sor kijelölése
+	Select Objects	Objektumok kijelölése
+	Select Paragraph	Bekezdés kijelölése
+	Select Range	Tartomány kijelölése
+	Select Recipients	Címzettek kiválasztása
+	Select Row	Sor kijelölése
+	Select Sentence	Mondat kijelölése
+	Select Table	Táblázat kijelölése
+	Select Text	Szöveg kijelölése
+	Select Text with Similar Formatting	Hasonló formázású szöveg kijelölése
+	Select Word	Szó kijelölése
+	Select\nRecipients	Címzettek\nkiválasztása
+	Selection	Kijelölés
+	Selection Pane	Kijelölés panel
+	Send Backward	Hátrébb küldés
+	Sentence case.	Mondatkezdő nagybetű.
+	Set Caret	Kurzor elhelyezése
+	Set Character Formatting	Karakterformázás beállítása
+	Set Numbering Value	Számozás értékének beállítása
+	Set Paragraph Formatting	Bekezdésformázás beállítása
+	Set as Default	Beállítás alapértelmezettként
+	Shading	Mintázat
+	Shadow	Árnyék
+	Shape Fill	Alakzat kitöltése
+	Shape Format	Alakzat formátuma
+	Shape Outline	Alakzat körvonala
+	Shape Styles	Alakzatstílusok
+	Shapes	Alakzatok
+	Share	Megosztás
+	Shift+Tab	Shift+Tab
+	Show	Megjelenítés
+	Show all revisions inline	Minden változat megjelenítése a szövegben
+	Show Comments	Megjegyzések megjelenítése
+	Show Markup	Jelölések megjelenítése
+	Show Notes	Jegyzetek megjelenítése
+	Show all formatting marks	Minden formázási jel megjelenítése
+	Show only comments and formatting in balloons	Csak a megjegyzések és a formázás buborékban
+	Show revisions in balloons	Változatok megjelenítése buborékban
+	Show rulers	Vonalzók megjelenítése
+	Show the community button in the title bar	A közösség gomb megjelenítése a címsorban
+	Show/Hide ¶	¶ megjelenítése/elrejtése
+	Show\nComments	Megjegyzések\nmegjelenítése
+	Shrink Font 1 Point	Betűméret csökkentése 1 ponttal
+	Side to Side	Egymás mellett
+	Side\nto Side	Egymás\nmellett
+	Signature Line	Aláírássor
+	Single	Szimpla
+	Single Spacing	Szimpla sorköz
+	Size	Méret
+	Size:	Méret:
+	Small Caps	Kiskapitális
+	Small caps	Kiskapitális
+	SmartArt	SmartArt
+	Sort	Rendezés
+	Source code: github.com/storytold/wordcraft	Forráskód: github.com/storytold/wordcraft
+	Space	Szóköz
+	Space before/after:	Térköz előtte/utána:
+	Spacing	Térköz
+	Spacing (pt):	Térköz (pt):
+	Speech	Beszéd
+	Spelling & Grammar	Helyesírás és nyelvhelyesség
+	Spelling &\nGrammar	Helyesírás és\nnyelvhelyesség
+	Spelling Suggestions	Helyesírási javaslatok
+	Split	Felosztás
+	Split Cells	Cellák felosztása
+	Split Table	Táblázat felosztása
+	Spreadsheet Table	Számolótábla
+	Standard Colors	Standard színek
+	Star	Csillag
+	Start at:	Kezdőérték:
+	Start Mail Merge	Körlevél indítása
+	Start Mail\nMerge	Körlevél\nindítása
+	Statistics	Statisztika
+	Status Bar	Állapotsor
+	Strikethrough	Áthúzott
+	Studio cover	Studio borító
+	Studio handbook (sample)	Studio kézikönyv (minta)
+	Style	Stílus
+	Style Inspector	Stílusvizsgáló
+	Style Set	Stíluskészlet
+	Style based on:	Alapstílus:
+	Style: {style}	Stílus: {style}
+	Styles	Stílusok
+	Styles Pane	Stílusok panel
+	Subscript	Alsó index
+	Superscript	Felső index
+	Switch Modes	Módváltás
+	Switch\nModes	Mód-\nváltás
+	Symbol	Szimbólum
+	Symbols	Szimbólumok
+	Synonyms	Szinonimák
+	Tab	Tab
+	Tab character	Tabulátor karakter
+	Table	Táblázat
+	Table Column Width	Táblázat oszlopszélessége
+	Table Design	Táblázattervezés
+	Table Layout	Táblázatelrendezés
+	Table Properties	Táblázat tulajdonságai
+	Table Row Height	Táblázat sormagassága
+	Table Style Options	Táblázatstílus beállításai
+	Table Styles	Táblázatstílusok
+	Table of Authorities	Jogforrásjegyzék
+	Table of Contents	Tartalomjegyzék
+	Table of\nContents	Tartalom-\njegyzék
+	Tables	Táblázatok
+	Tabs	Tabulátorok
+	Tabular List	Táblázatos lista
+	Text	Szöveg
+	Text Box	Szövegdoboz
+	Text Direction	Szövegirány
+	Text Effects	Szövegeffektusok
+	Text Effects and Typography	Szövegeffektusok és tipográfia
+	Text Highlight Color	Szövegkiemelés színe
+	Text indent at:	Szöveg behúzása:
+	Text Wrapping	Szöveg körbefuttatása
+	Text from File	Szöveg fájlból
+	Text to display:	Megjelenítendő szöveg:
+	Text:	Szöveg:
+	Text\nBox	Szöveg-\ndoboz
+	Text\nDirection	Szöveg-\nirány
+	The clipboard is empty.	A vágólap üres.
+	The new style takes the formatting of the current paragraph.	Az új stílus az aktuális bekezdés formázását kapja.
+	Theme Colors	Témaszínek
+	Theme Fonts	Téma betűtípusai
+	Theme List	Témalista
+	Themes	Témák
+	Thesaurus	Szinonimaszótár
+	Thick	Vastag
+	Three	Három
+	Tight	Szoros
+	Top Border	Felső szegély
+	Top Margin	Felső margó
+	Top of Page	Oldal teteje
+	Top:	Felső:
+	Total Row	Összegsor
+	Track Changes	Változások követése
+	Track Changes Options	Változáskövetés beállításai
+	Track Changes: On	Változások követése: be
+	Track formatting	Formázás követése
+	Tracking	Követés
+	Translate	Fordítás
+	Transparency	Átlátszóság
+	Triangle	Háromszög
+	Two	Kettő
+	Type Text	Szöveg begépelése
+	Type a command, e.g. "insert table"	Írj be egy parancsot, például: „táblázat beszúrása”
+	Ungroup	Csoportbontás
+	UPPERCASE	NAGYBETŰS
+	Underline	Aláhúzott
+	Underline Words Only	Csak a szavak aláhúzása
+	Undo	Visszavonás
+	Undo {action}	Visszavonás: {action}
+	Unformatted Text	Formázatlan szöveg
+	Up	Fel
+	Update Field	Mező frissítése
+	Update Index	Tárgymutató frissítése
+	Update Style to Match Selection	Stílus frissítése a kijelölés alapján
+	Update Table	Táblázat frissítése
+	Update Table of Figures	Ábrajegyzék frissítése
+	Update to Match	Frissítés egyezésre
+	Update to Match Selection	Frissítés a kijelölés alapján
+	User Name	Felhasználónév
+	User name:	Felhasználónév:
+	Version History	Verzióelőzmények
+	Version {version} ({build})	{version} verzió ({build})
+	Vertical	Függőleges
+	Vertical Alignment	Függőleges igazítás
+	View	Nézet
+	View Gridlines	Rácsvonalak megjelenítése
+	View State	Nézet állapota
+	Views	Nézetek
+	Voice	Hang
+	Watermark	Vízjel
+	Wave	Hullám
+	Web Layout	Webes elrendezés
+	Web\nLayout	Webes\nelrendezés
+	Web page (*.html)	Weboldal (*.html)
+	Whole page	Teljes oldal
+	Whole words	Csak teljes szavak
+	Wide	Széles
+	Widow/Orphan Control	Fattyú- és árvasorok kezelése
+	Widow/Orphan control	Fattyú- és árvasorok kezelése
+	Wildcards (regex)	Helyettesítő karakterek (reguláris kifejezés)
+	Window	Ablak
+	Word Count	Szavak száma
+	Word Left	Szóval balra
+	Word Right	Szóval jobbra
+	Word document (*.docx)	Word-dokumentum (*.docx)
+	WordArt	WordArt
+	WordCraft	WordCraft
+	Words	Szavak
+	Words only	Csak szavak
+	Wrap Text	Szöveg körbefuttatása
+	Wrap\nText	Körbe-\nfuttatás
+	Write & Insert Fields	Mezők írása és beszúrása
+	Write a reply	Válasz írása
+	Zoom	Nagyítás
+	Zoom In	Nagyítás
+	Zoom Out	Kicsinyítés
+	development build	fejlesztői build
+	lowercase	kisbetűs
+	{group} settings	{group} beállításai
+	{key}+Click to follow link	{key}+kattintás a hivatkozás megnyitásához
+	{selected} of {words} words	{selected} / {words} szó
+	{words} words	{words} szó
+	Browse…	Tallózás…
+	Equation	Egyenlet
+	Review	Véleményezés
+	Track\nChanges	Változások\nkövetése
+	Track\nChanges ✓	Változások\nkövetése ✓
+	Scroll ribbon left	Menüszalag görgetése balra
+	Scroll ribbon right	Menüszalag görgetése jobbra
+	Apply Styles	Stílusok alkalmazása
+	Dark page (white text on black)	Sötét oldal (fehér szöveg feketén)
+	Show documents with their colours inverted, like View › Switch Modes. Saving, printing and PDFs are unchanged.	A dokumentumok megjelenítése fordított színekkel, mint a Nézet › Módváltás. A mentést, a nyomtatást és a PDF-et nem érinti.
+	Only web (http, https) and email (mailto) links can be followed	Csak webes (http, https) és e-mail (mailto) hivatkozások nyithatók meg
+	Character Border	Karakterszegély
+	Direction:	Irány:
+	Right-to-left	Jobbról balra
+	Left-to-right	Balról jobbra
+	Zotero	Zotero
+	Citations	Hivatkozások
+	Document	Dokumentum
+	Add/Edit\nCitation	Hivatkozás\nhozzáadása/szerkesztése
+	Add\nNote	Jegyzet\nhozzáadása
+	Add/Edit\nBibliography	Irodalomjegyzék\nhozzáadása/szerkesztése
+	Refresh	Frissítés
+	Document\nPreferences	Dokumentum\nbeállításai
+	Unlink\nCitations	Hivatkozások\nleválasztása
+	Waiting for Zotero…	Várakozás a Zoterora…
+	Zotero: done	Zotero: kész
+	Zotero: cancelled	Zotero: megszakítva
+	Yes	Igen
+	No	Nem
+	Move Past Citation	Ugrás a hivatkozás után
+	Move Past\nCitation	Ugrás a\nhivatkozás után
+	Next Sentence	Következő mondat
+	Previous Sentence	Előző mondat
+	Next sentence	Következő mondat
+	Previous sentence	Előző mondat
+	Play/Pause	Lejátszás/szünet
+	Read Aloud Status	Felolvasás állapota
+	Reading Speed	Olvasási sebesség
+	Skip Citations and Bibliography	Hivatkozások és irodalomjegyzék kihagyása
+	Skip citations & bibliography	Hivatkozások és irodalomjegyzék kihagyása
+	Stop Reading	Felolvasás leállítása
+	Don't read Zotero, Mendeley or EndNote citations and bibliographies	A Zotero, Mendeley és EndNote hivatkozások és irodalomjegyzékek kihagyása felolvasáskor
+	Play	Lejátszás
+	Pause	Szünet
+	Stop	Leállítás
+	Sentence	Mondat
+	Paused	Szüneteltetve
+	Finished	Befejezve
+	Stopped	Leállítva
+	Speed	Sebesség
+	Normal speed	Normál sebesség
+	AutoSave documents you have saved in WordCraft	A WordCraftban mentett dokumentumok automatikus mentése
+	AutoSave failed: {error}. Save the document to turn AutoSave back on.	Az automatikus mentés nem sikerült: {error}. Mentsd a dokumentumot az automatikus mentés visszakapcsolásához.
+	Couldn't download {name}: {error}	Nem sikerült letölteni: {name}: {error}
+	Do you want to save changes to {name}?	Mented a(z) {name} módosításait?
+	Don't Save	Nincs mentés
+	That format doesn't keep everything, so the document is still open. Save it as a Word document (.docx) to go on.	Ez a formátum nem őriz meg mindent, ezért a dokumentum nyitva marad. A folytatáshoz mentsd Word-dokumentumként (.docx).
+	Your changes will be lost if you don't save them.	Ha nem mented, a módosításaid elvesznek.
+	Change Structure	Szerkezet módosítása
+	Change to Display	Váltás kiemelt egyenletre
+	Change to Inline	Váltás szövegközi egyenletre
+	Conversions	Átalakítások
+	Delete Back in Equation	Visszatörlés az egyenletben
+	Delete in Equation	Törlés az egyenletben
+	Edit Equation	Egyenlet szerkesztése
+	Enter in Equation	Enter az egyenletben
+	Equation Gallery	Egyenletgyűjtemény
+	Equation Info	Egyenlet adatai
+	Equation Number	Egyenlet sorszáma
+	Input Format	Beviteli formátum
+	Insert Structure	Szerkezet beszúrása
+	Insert Symbol	Szimbólum beszúrása
+	Justification	Igazítás
+	Leave Equation	Kilépés az egyenletből
+	Move in Equation	Mozgás az egyenletben
+	Normal Text	Normál szöveg
+	Set Equation	Egyenlet beállítása
+	Structure Actions	Szerkezetműveletek
+	Structures	Szerkezetek
+	Tools	Eszközök
+	Type in Equation	Gépelés az egyenletben
+	Inline	Szövegközi
+	Number	Szám
+	Close Equation	Egyenlet bezárása
+	Insert New Equation	Új egyenlet beszúrása
+	Built-In	Beépített
+	Professional	Professzionális
+	Linear	Lineáris
+	Fraction	Tört
+	Script	Index
+	Radical	Gyök
+	Integral	Integrál
+	Large\nOperator	Nagy\noperátor
+	Bracket	Zárójel
+	Function	Függvény
+	Accent	Ékezet
+	Limit and\nLog	Határérték\nés log
+	Operator	Operátor
+	Equation Options	Egyenlet beállításai
+	All symbol sets	Minden szimbólumkészlet
+	Send the document straight to the system print dialog, or save a copy in another format below.	A dokumentum küldése közvetlenül a rendszer nyomtatási párbeszédpaneljére, vagy alább egy másolat mentése más formátumban.
+	Or save a copy in another format:	Vagy ments egy másolatot más formátumban:
+	Opening print dialog…	Nyomtatási párbeszédpanel megnyitása…
+	Print failed: {error}	A nyomtatás nem sikerült: {error}
+	Couldn't open {path}: {error}	Nem sikerült megnyitni: {path}: {error}
+	Column Selection	Oszlopkijelölés
+	New Table Style	Új táblázatstílus
+	Modify Table Style	Táblázatstílus módosítása
+	New Table Style…	Új táblázatstílus…
+	Modify Table Style…	Táblázatstílus módosítása…
+	Apply formatting to:	Formázás alkalmazása:
+	Whole Table	Teljes táblázat
+	Fill color:	Kitöltőszín:
+	{count} items highlighted	{count} kiemelt elem
+	{n} pt	{n} pt
+	Not {name}	Nem {name}
+	Level {n}	{n}. szint
+	Body Text	Szövegtörzs
+	{n} lines	{n} sor
+	At least {n}	Legalább {n}
+	Exactly {n}	Pontosan {n}
+	Centered	Középre igazított
+	Character spacing	Betűköz
+	Don't add space between paragraphs of the same style	Ne legyen térköz az azonos stílusú bekezdések között
+	Don't hyphenate	Nincs elválasztás
+	Double strikethrough	Dupla áthúzás
+	Drop cap	Iniciálé
+	First line	Első sor
+	Font color	Betűszín
+	Highlight	Kiemelés
+	Justified	Sorkizárt
+	Left indent	Bal behúzás
+	Line spacing	Sorköz
+	Outline level	Vázlatszint
+	Raised/lowered	Emelt/süllyesztett
+	Right indent	Jobb behúzás
+	Scale	Méretezés
+	Space after	Térköz utána
+	Space before	Térköz előtte
+	Suppress line numbers	Sorszámozás tiltása
+	Underline color	Aláhúzás színe
+	Letters	Levelek
+	E-mail Messages	E-mail üzenetek
+	Directory	Címtár
+	Normal Word Document	Normál dokumentum
+	If…Then…Else…	Ha…Akkor…Különben…
+	If…Then…Else	Ha…Akkor…Különben
+	Merge Record #	Egyesített rekord sorszáma
+	Skip Record If…	Rekord kihagyása, ha…
+	Skip Record If	Rekord kihagyása, ha
+	Equals:	Egyenlő:
+	Then insert:	Akkor beszúrandó:
+	Otherwise insert:	Különben beszúrandó:
+	Courtesy Title	Megszólítás (titulus)
+	First Name	Utónév
+	Last Name	Vezetéknév
+	Company	Cég
+	Address	Cím
+	City	Település
+	State	Megye/állam
+	Postal Code	Irányítószám
+	Country	Ország
+	(not matched)	(nincs párosítva)
+	Leave a recipient out of the merge when a field has this value.	A címzett kimarad az egyesítésből, ha egy mező értéke ez.
+	Insert one text or another, depending on a field's value.	Az egyik vagy a másik szöveg beszúrása egy mező értékétől függően.
+	Select recipients first to match their fields.	A mezők párosításához előbb válaszd ki a címzetteket.
+	The recipient-list field that fills each part of an address block and greeting line.	A címzettlista azon mezője, amely a címblokk és a megszólítás egyes részeit kitölti.
+	No errors found: every merge field is in the recipient list.	Nincs hiba: minden egyesítési mező szerepel a címzettlistában.
+	These merge fields aren't in the recipient list:	Ezek az egyesítési mezők nem szerepelnek a címzettlistában:
+	Add at least one field.	Adj hozzá legalább egy mezőt.
+	Add Field	Mező hozzáadása
+	Every field needs a name.	Minden mezőnek kell név.
+	Field name	Mezőnév
+	Field names must be different.	A mezőneveknek különbözniük kell.
+	Fields:	Mezők:
+	Field:	Mező:
+	Find:	Keresés:
+	New Entry	Új bejegyzés
+	Recipient List	Címzettlista
+	Recipients: {count}	Címzettek: {count}
+	Remove field	Mező eltávolítása
+	Remove recipient	Címzett eltávolítása
+	Select recipients first to choose from their fields.	A mezők közüli választáshoz előbb válaszd ki a címzetteket.
+	Type a New List…	Új lista begépelése…
+	Type at least one recipient.	Írj be legalább egy címzettet.
+	Type the recipients, or load them from a file.	Írd be a címzetteket, vagy töltsd be őket fájlból.
+	Use an Existing List…	Meglévő lista használata…
+	Interface theme:	Felület témája:
+	Interface\nTheme	Felület\ntémája
+	Interface Theme	Felület témája
+	Light	Világos
+	Dark	Sötét
+	Use system setting	Rendszerbeállítás követése
+	A file dialog is already open.	Már nyitva van egy fájlválasztó ablak.
+	Height:	Magasság:
+	Width:	Szélesség:
+	Row	Sor
+	Cell	Cella
+	Preferred width:	Kívánt szélesség:
+	Alignment:	Igazítás:
+	Indent from left:	Behúzás balról:
+	Specify height:	Magasság megadása:
+	Exactly	Pontosan
+	At least	Legalább
+	Allow row to break across pages	A sor oldalak közötti megtörésének engedélyezése
+	Repeat as header row on each page	Ismétlés fejlécsorként minden oldalon
+	Vertical alignment:	Függőleges igazítás:
+	Top	Fent
+	Bottom	Lent
+	Alt text	Helyettesítő szöveg
+	Alt:	Hely. szöveg:
+	W:	Sz:
+	H:	M:
+	Reset	Alaphelyzet
+	Reset Crop	Körülvágás visszaállítása
+	Insert a new equation (Alt+=)	Új egyenlet beszúrása (Alt+=)
+	Leave the equation (Esc)	Kilépés az egyenletből (Esc)
+	Preview	Előnézet
+	getartcraft.com/apps/wordcraft	getartcraft.com/apps/wordcraft
+	Draw Ink	Rajzolás tollal
+	Erase Ink	Rajz törlése
+	Hide Ink	Rajz elrejtése
+	Hide\nInk	Rajz\nelrejtése
+	Pens	Tollak
+	Thickness	Vastagság
+	(All)	(Mind)
+	(none)	(nincs)
+	(normal text)	(normál szöveg)
+	1/4 Em Space	1/4 kvirtszóköz
+	A mail merge field	Körlevél-egyesítési mező
+	A numbered sequence (figures, tables…)	Számozott sorozat (ábrák, táblázatok…)
+	A table of contents	Tartalomjegyzék
+	Categories:	Kategóriák:
+	Character	Karakter
+	Character code:	Karakterkód:
+	Col #:	Oszlop:
+	Copyright	Copyright
+	Date and Time	Dátum és idő
+	Date formats:	Dátumformátumok:
+	Description:	Leírás:
+	Document Information	Dokumentum adatai
+	Double Closing Quote	Záró idézőjel
+	Double Opening Quote	Nyitó idézőjel
+	Ellipsis	Három pont
+	Em Dash	Hosszú gondolatjel
+	En Dash	Nagykötőjel
+	Em Space	Kvirtszóköz
+	En Space	Félkvirtszóköz
+	Equal column width	Egyenlő hasábszélesség
+	Field Codes	Mezőkódok
+	Field code:	Mezőkód:
+	Field codes:	Mezőkódok:
+	Field name:	Mezőnév:
+	Field names:	Mezőnevek:
+	Field properties	Mező tulajdonságai
+	Field…	Mező…
+	Format:	Formátum:
+	Hide Codes	Kódok elrejtése
+	Index and Tables	Tárgymutató és jegyzékek
+	Line between	Elválasztó vonal
+	Links and References	Hivatkozások és kapcsolatok
+	Mail Merge	Körlevél
+	More Columns…	További hasábok…
+	More Symbols…	További szimbólumok…
+	No-Width Non Break	Nulla szélességű nem törő karakter
+	No-Width Optional Break	Nulla szélességű feltételes törés
+	Paragraph Mark	Bekezdésjel
+	Pick a field from the list	Válassz mezőt a listából
+	Preserve formatting during updates	Formázás megőrzése frissítéskor
+	Presets	Előbeállítások
+	Recently used symbols:	Legutóbb használt szimbólumok:
+	Registered	Bejegyzett védjegy
+	Section Mark	Szakaszjel
+	Sequence name:	Sorozat neve:
+	Shortcut key:	Billentyűparancs:
+	Single Closing Quote	Szimpla záró idézőjel
+	Single Opening Quote	Szimpla nyitó idézőjel
+	Spacing:	Térköz:
+	Special Characters	Speciális karakterek
+	Subset:	Részhalmaz:
+	The time right now	A pontos idő
+	When this document was first created	A dokumentum létrehozásának időpontja
+	When this document was most recently printed	A dokumentum legutóbbi nyomtatásának időpontja
+	When this document was most recently saved	A dokumentum legutóbbi mentésének időpontja
+	The document has no bookmarks yet.	A dokumentumban még nincs könyvjelző.
+	Who the document properties name as author	A dokumentum tulajdonságaiban megadott szerző
+	Name of the file this document is saved as	A dokumentum fájlneve
+	Title from the document properties	A dokumentum tulajdonságaiban megadott cím
+	How many pages the whole document has	A teljes dokumentum oldalainak száma
+	How many pages this section has	Az aktuális szakasz oldalainak száma
+	Number of the page the field sits on	Annak az oldalnak a száma, amelyen a mező áll
+	Number of the section the field sits in	Annak a szakasznak a száma, amelyben a mező áll
+	How many words the document holds	A dokumentum szavainak száma
+	Page on which a bookmarked passage falls	Az oldal, amelyre egy könyvjelzővel megjelölt rész esik
+	Copy of the text a bookmark marks	A könyvjelzővel megjelölt szöveg másolata
+	This field has no options.	Ennek a mezőnek nincsenek beállításai.
+	This font has no characters to show.	Ebben a betűtípusban nincs megjeleníthető karakter.
+	This point forward	Innentől kezdve
+	The date it is today	A mai dátum
+	Trademark	Védjegy
+	Type the field's name and its switches, for example PAGE \\* roman.	Írd be a mező nevét és kapcsolóit, például PAGE \\* roman.
+	Width and spacing	Szélesség és térköz
+	from Unicode (hex)	Unicode (hexa)
+	Shape Effects	Alakzateffektusok
+	Glow	Ragyogás
+	Soft Edges	Lágy szélek
+	No Shadow	Nincs árnyék
+	No Glow	Nincs ragyogás
+	No Soft Edges	Nincs lágy szél
+	Glow Colors	Ragyogás színei
+	Weight	Vastagság
+	Shadow, glow and soft edges	Árnyék, ragyogás és lágy szélek
+	Offset: Bottom Right	Eltolás: jobbra le
+	Offset: Bottom	Eltolás: le
+	Offset: Bottom Left	Eltolás: balra le
+	Offset: Right	Eltolás: jobbra
+	Offset: Center	Eltolás: középen
+	Offset: Left	Eltolás: balra
+	Offset: Top Right	Eltolás: jobbra fel
+	Offset: Top	Eltolás: fel
+	Offset: Top Left	Eltolás: balra fel
+	Manage Styles	Stílusok kezelése
+	Show or Hide Style	Stílus megjelenítése vagy elrejtése
+	Manage Styles…	Stílusok kezelése…
+	Sort order:	Rendezési sorrend:
+	As Recommended	Ajánlott
+	Alphabetical	Betűrendes
+	Font: {font}	Betűtípus: {font}
+	{size} pt	{size} pt
+	Color: {color}	Szín: {color}
+	Space before: {pt} pt	Térköz előtte: {pt} pt
+	Space after: {pt} pt	Térköz utána: {pt} pt
+	Based on: {style}	Alapja: {style}
+	Paragraph style	Bekezdésstílus
+	Character style	Karakterstílus
+	Linked style (paragraph and character)	Csatolt stílus (bekezdés és karakter)
+	Table style	Táblázatstílus
+	Built-in style	Beépített stílus
+	Show in the Styles gallery	Megjelenítés a stílusgyűjteményben
+	Hide from style lists	Elrejtés a stíluslistákból
+	Built-in styles can't be deleted.	A beépített stílusok nem törölhetők.
+	Delete Table Style	Táblázatstílus törlése
+	Password	Jelszó
+	Password:	Jelszó:
+	Confirm password:	Jelszó megerősítése:
+	Encrypt with Password…	Titkosítás jelszóval…
+	Change Password…	Jelszó módosítása…
+	Remove Password	Jelszó eltávolítása
+	A password is required to open this document.	A dokumentum megnyitásához jelszó szükséges.
+	Anyone can open this document. Encrypt it with a password to keep it private.	Ezt a dokumentumot bárki megnyithatja. Titkosítsd jelszóval, hogy bizalmas maradjon.
+	Anyone who opens the document will need this password.	Aki megnyitja a dokumentumot, annak szüksége lesz erre a jelszóra.
+	{name} is protected with a password.	A(z) {name} jelszóval védett.
+	That password isn't right. Check it (passwords are case-sensitive) and try again.	Ez a jelszó nem megfelelő. Ellenőrizd (a kis- és nagybetűk számítanak), és próbáld újra.
+	The document will be saved with a password. Save it to protect it.	A dokumentum jelszóval lesz mentve. A védelemhez mentsd.
+	The password is removed. Save the document to keep the change.	A jelszó eltávolítva. Mentsd a dokumentumot a módosítás megtartásához.
+	The passwords don't match.	A jelszavak nem egyeznek.
+	Keep the password somewhere safe: without it nobody, WordCraft included, can open the document. Leave both boxes empty to remove the password.	Tartsd biztonságos helyen a jelszót: nélküle senki – a WordCraft sem – tudja megnyitni a dokumentumot. A jelszó eltávolításához hagyd üresen mindkét mezőt.
+	Align Top Left	Igazítás balra fel
+	Align Top Center	Igazítás középre fel
+	Align Top Right	Igazítás jobbra fel
+	Align Center Left	Igazítás balra középen
+	Align Center	Igazítás középre
+	Align Center Right	Igazítás jobbra középen
+	Align Bottom Left	Igazítás balra le
+	Align Bottom Center	Igazítás középre le
+	Align Bottom Right	Igazítás jobbra le
+	{contributors} contributors · {commits} commits	{contributors} közreműködő · {commits} commit
+	{cols}×{rows} Table	{cols}×{rows} táblázat
+	AaBbYyZz	AaBbYyZz ŐőŰű
+	pt	pt
+	Document1	Dokumentum1
+	Username	Felhasználónév
+	Display name	Megjelenített név
+	Real name	Valódi név
+	Name	Név
+	PRs	PR-ek
+	Commits	Commitok
+	First	Első
+	Last	Utolsó
+	Model	Modell
+	Version	Verzió
+	% of all commits	Az összes commit %-a
+	Lines +/−	Sorok +/−
+	Craft	Kézműves
+	Studio	Stúdió
+	Atelier	Műhely
+	Darkroom	Sötétkamra
+	Gallery	Galéria
+	Sketchbook	Vázlatfüzet
+	Change Picture…	Kép cseréje…
+	Font…	Betűtípus…
+	Paragraph…	Bekezdés…
+	Link…	Hiperhivatkozás…
+	Size and Crop…	Méret és körülvágás…
+	Insert Columns to the Left	Oszlopok beszúrása balra
+	Insert Columns to the Right	Oszlopok beszúrása jobbra
+	Insert Rows Above	Sorok beszúrása fölé
+	Insert Rows Below	Sorok beszúrása alá
+	Mon	H
+	Tue	K
+	Wed	Sze
+	Sum	Összeg
+	North	Észak
+	South	Dél
+	West	Nyugat
+	Total	Összesen
+	Rotation	Elforgatás
+	Rotation:	Elforgatás:
+	Rotate Right 90°	Forgatás jobbra 90°-kal
+	Rotate Left 90°	Forgatás balra 90°-kal
+	Flip Vertical	Függőleges tükrözés
+	Flip Horizontal	Vízszintes tükrözés
+	Formatted	Formázott
+	Interface size:	Felület mérete:
+	Makes the ribbon, menus and dialogs larger or smaller, on top of your system's display scaling. Document zoom is separate.	Nagyobbra vagy kisebbre állítja a menüszalagot, a menüket és a párbeszédpaneleket, a rendszer kijelzőméretezésén felül. A dokumentum nagyítása ettől független.
+
+# Proofing languages and proofing messages (Hungarian spelling). Only in this catalog so far; other
+# languages show these in English.
+	Hungarian	Magyar
+	Do not check spelling or grammar	Helyesírás és nyelvhelyesség ellenőrzése nélkül
+	Possible spelling mistake	Lehetséges helyesírási hiba
+	Use "az" before a vowel	Magánhangzó előtt „az” a névelő
+	Use "a" before a consonant	Mássalhangzó előtt „a” a névelő
+	Use "an" before a vowel sound	Magánhangzóval kezdődő szó előtt „an” kell
+	Use "a" before a consonant sound	Mássalhangzóval kezdődő szó előtt „a” kell
+	Remove the space before the punctuation	Töröld az írásjel előtti szóközt
+	Extra space	Fölösleges szóköz
+	Capitalize the first word of a sentence	A mondat első szava nagybetűvel kezdődik

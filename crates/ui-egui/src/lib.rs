@@ -786,6 +786,10 @@ impl WordApp {
     pub fn logic(&mut self, ctx: &egui::Context) {
         let lang = i18n::Lang::from_pref(&self.ui.language);
         i18n::set_current(lang);
+        // New blank documents are written in the interface language when WordCraft can check
+        // its spelling (Hungarian); otherwise in English (United States), the built-in default.
+        self.session.prefs.editing_lang = (lang.code() == "hu").then(|| "hu-HU".to_string());
+        self.session.adopt_editing_lang();
         // Chinese text wants the Chinese face before the Japanese one (one glyph style per line).
         // An installed CJK font is read only once CJK text is shown (#241): never for an English
         // interface that doesn't open the language list.
